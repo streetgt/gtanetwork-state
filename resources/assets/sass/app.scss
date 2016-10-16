@@ -1,0 +1,209 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+// Variables
+@import "variables";
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+// Font-awesome
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
+/* Space out content a bit */
+
+.network {
+  color: $color_blue;
+}
+
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #eeeeee;
+  //background: url('/images/header.jpg') repeat fixed bottom center;
+  //background-size: cover;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+
+.header, .marketing, .footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Custom page header */
+
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+
+  h1 {
+    color: $color_grey;
+    font-size: 45px;
+    span {
+      color: $color_blue;
+    }
+  }
+
+}
+
+.logo {
+  width: 100px;
+  margin-top: 20px;
+  margin-right: 25px;
+}
+
+.banner {
+  img {
+    padding-bottom: 20px;
+  }
+  textarea {
+    border: 1px solid $color_grey;
+    width: 460px;
+  }
+}
+.code {
+  font-family: "Arial";
+  font-size: 12px;
+}
+
+.faq {
+  ul {
+    li {
+      padding-bottom: 5px;
+    }
+  }
+  ul, ol{
+    padding-left: 25px;
+  }
+}
+
+/* Custom page footer */
+
+.footer {
+  font-size: 10px;
+  padding-top: 5px;
+  color: $color_grey;
+  font-style: italic;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 965px;
+  }
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+
+.jumbotron {
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #FFF;
+  .btn-network {
+    padding: 14px 24px;
+    font-size: 16px;
+    color: #fff;
+    background-color: $color_blue;
+  }
+  margin-bottom: 5px !important;
+}
+
+/* Supporting marketing content */
+
+.marketing {
+  margin: 40px 0;
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+
+/* Cleaning default **/
+.nav-pills {
+  > li {
+    > a {
+      color: #ffffff;
+      background-color: $color_blue;
+      padding: 5px;
+      font-size: 12px;
+      border-radius: 0px;
+      &:hover {
+        background-color: $color_grey;
+      }
+    }
+    + li {
+      margin-left: 2px;
+    }
+
+    // Active state
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: $color_grey;
+      }
+    }
+  }
+}
+.nav-tabs {
+    > li {
+      float: left;
+      // Make the list-items overlay the bottom border
+      margin-bottom: -1px;
+
+      // Actual tabs (as links)
+      > a {
+        color: #FFF !important;
+        border: 0 !important;
+        background-color: $color_blue !important;
+        &:hover {
+          background-color: $color_blue !important;
+        }
+      }
+
+      // Active state, and its :hover to override normal :hover
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: $color_grey !important;
+          border: 0 !important;
+        }
+      }
+    }
+    border-bottom: 0 !important;
+}
+.panel {
+  font-family: 'Open Sans', sans-serif;
+  text-align: left !important;
+  border-radius: 0px !important;
+  h3 {
+    color: $color_blue;
+  }
+}
+.breadcrumb {
+  text-align: left;
+  li {
+    a {
+      color: $color_blue;
+    }
+  }
+}
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header, .marketing, .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
