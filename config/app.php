@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'GTA Network - State',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,6 +176,7 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
     ],
 
     /*
@@ -228,6 +229,7 @@ return [
          * Package Class Aliases...
          */
         'Image' => Intervention\Image\Facades\Image::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
 
     ],
 

@@ -16,5 +16,6 @@ elixir(function(mix) {
     mix.scripts([
         '../../../node_modules/jquery/dist/jquery.js',
         '../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
+        '../../../node_modules/datatables.net/js/jquery.dataTables.js',
     ], 'public/js/app.js');
 });

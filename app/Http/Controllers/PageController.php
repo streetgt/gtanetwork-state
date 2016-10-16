@@ -47,11 +47,16 @@ class PageController extends Controller
 
         $stats = Stats::orderBy('date', 'ASC')->get();
 
-//        foreach($stats as $day) {
-//            $date = Carbon::parse($day->date);
-//            dd($date->format('D, M j, Y'));
-//        }
-
         return view('pages.stats',compact('stats','players'));
+    }
+
+    /**
+     * Display the FAQ page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function servers()
+    {
+        return view('pages.servers');
     }
 }

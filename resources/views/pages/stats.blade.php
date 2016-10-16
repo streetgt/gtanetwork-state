@@ -20,9 +20,9 @@
     <script>
         var lineChartData = {
             labels: [
-                    @foreach($stats as $day)
-                    "{{ \Carbon\Carbon::parse($day->date)->format('D, M j, Y') }}",
-                    @endforeach
+                @foreach($stats as $day)
+                        "{{ \Carbon\Carbon::parse($day->date)->format('D, M j, Y') }}",
+                @endforeach
             ],
             datasets: [{
                 fill: false,

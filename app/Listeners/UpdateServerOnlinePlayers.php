@@ -46,10 +46,18 @@ class UpdateServerOnlinePlayers implements ShouldQueue
                 $avg = json_decode($today_stats->avg);
 
                 switch (Carbon::now()->hour) {
-                    case 0: $avg[0] = $cur; break;
-                    case 6: $avg[1] = $cur; break;
-                    case 12: $avg[2] = $cur; break;
-                    case 18: $avg[3] = $cur; break;
+                    case 0:
+                        $avg[0] = $cur;
+                        break;
+                    case 6:
+                        $avg[1] = $cur;
+                        break;
+                    case 12:
+                        $avg[2] = $cur;
+                        break;
+                    case 18:
+                        $avg[3] = $cur;
+                        break;
                 }
 
                 $today_stats->update([
