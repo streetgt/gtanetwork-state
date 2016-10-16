@@ -52,7 +52,7 @@ class UpdateServerList implements ShouldQueue
                 'currentplayers' => $element->get('CurrentPlayers'),
             ]);
 
-            //event(new UpdateServerStatisticsEvent($element));
+            event(new UpdateServerStatisticsEvent($element));
 
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];
@@ -67,7 +67,7 @@ class UpdateServerList implements ShouldQueue
                     'country'    => $this->getCountry($element->get('IP')),
                 ]);
 
-                //event(new UpdateServerStatistics($element));
+                event(new UpdateServerStatistics($element));
             }
         }
     }
