@@ -12,6 +12,7 @@
                     <th>Current Players</th>
                     <th>Max Players</th>
                     <th>IP</th>
+                    <th>Join</th>
                 </tr>
                 </thead>
             </table>
@@ -31,7 +32,16 @@
                     { data: 'servername', name: 'servername' },
                     { data: 'currentplayers', name: 'currentplayers' },
                     { data: 'maxplayers', name: 'maxplayers' },
-                    { data: 'ip', name: 'ip' },
+                    { data: 'ip', name: 'ip',
+                        render: function (ip) {
+                            return '<a href="{!! Request::root() !!}/server/search/'+ip+'">' + ip + '</a>';
+                        }
+                    },
+                    { data: 'ip', orderable: false,
+                        render: function (ip) {
+                            return '<a href="gtan://'+ip+'"><i class="fa fa-sign-in" aria-hidden="true"></i></a>';
+                        }
+                    },
                 ]
             });
         });
