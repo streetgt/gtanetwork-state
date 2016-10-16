@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="GTA Network server monitoring, stats, banner and live signatures!">
     <meta name="keywords" content="gtanetwork, game state, server info, multiplayer, server, information">
-    <meta name="author" content="Tiago Cardoso">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
 
     <title>GTA Network - Server State</title>
