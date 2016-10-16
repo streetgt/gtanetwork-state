@@ -13,6 +13,7 @@
 
 Route::get('/', 'PageController@index')->name('homepage');
 Route::get('/faq', 'PageController@faq')->name('faq');
+Route::get('/stats', 'PageController@stats')->name('stats');
 
 Route::group(['prefix' => 'server', 'as' => 'server.'], function () {
     Route::post('/search', 'ServerController@postSearch')->name('postSearch');

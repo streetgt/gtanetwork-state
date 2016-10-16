@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStatisticsTable extends Migration
+class CreateServerStatisticsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateStatisticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statistics', function (Blueprint $table) {
+        Schema::create('server_statistics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('server_id')->unsigned();
             $table->json('daily_stats');
@@ -31,6 +31,6 @@ class CreateStatisticsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('statistics');
+        Schema::drop('server_statistics');
     }
 }

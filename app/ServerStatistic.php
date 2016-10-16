@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Statistic extends Model
+class ServerStatistic extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'statistics';
+    protected $table = 'server_statistics';
 
     /**
      * @var array

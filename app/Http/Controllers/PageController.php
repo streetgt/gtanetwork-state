@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Carbon\Carbon;
+use App\Stats;
+use App\PlayersOnline;
 use App\Http\Requests;
 
 class PageController extends Controller
@@ -28,4 +29,29 @@ class PageController extends Controller
         return view('pages.faq');
     }
 
+    /**
+     * Display the Player Stats page
+     */
+    public function stats()
+    {
+        $today = Stats::where('date', Carbon::today())->first();
+
+        $players = [
+            'today_current' => $players = PlayersOnline::sum('currentplayers'),
+            'today_min'   => $today->min,
+            'today_max'   => $today->max,
+            'today_avg'   => round(array_sum(json_decode($today->avg)) / 4),
+            'min'   =>  Stats::orderBy('min', 'ASC')->pluck('min')->first(),
+            'max'   =>  Stats::orderBy('max', 'ASC')->pluck('max')->first()
+        ];
+
+        $stats = Stats::orderBy('date', 'ASC')->get();
+
+//        foreach($stats as $day) {
+//            $date = Carbon::parse($day->date);
+//            dd($date->format('D, M j, Y'));
+//        }
+
+        return view('pages.stats',compact('stats','players'));
+    }
 }

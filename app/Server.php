@@ -30,7 +30,7 @@ class Server extends Model
      */
     public function statistics()
     {
-        return $this->hasOne('App\Statistic');
+        return $this->hasOne('App\ServerStatistic');
     }
 
     public function playersOnline()
