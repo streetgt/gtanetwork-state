@@ -23,7 +23,7 @@ class UpdateServerOnlinePlayers implements ShouldQueue
         try {
 
             $server = Server::where('ip', $item->get('IP'))->firstOrFail();
-            
+
             $server->playersOnline()->updateOrCreate([
                 'currentplayers' => $item->get('CurrentPlayers'),
                 'maxplayers'     => $item->get('MaxPlayers'),

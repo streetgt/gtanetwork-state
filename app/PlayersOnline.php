@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class PlayersOnline extends Model
 {
     /**
-    * @var string
-    */
+     * @var string
+     */
     protected $table = 'players_online';
 
     /**
