@@ -9,7 +9,7 @@ use App\Events\UpdateServerEvent;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerStatistics implements ShouldQueue
+class UpdateServerStatistics //implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -61,10 +61,12 @@ class UpdateServerStatistics implements ShouldQueue
                 }
                 $daily_stats = json_encode($daily_stats);
 
-                $server->statistics()->create([
+                $row = $server->statistics()->create([
                     'daily_stats'  => $daily_stats,
                     'highest_peak' => $highest_peak,
                 ]);
+                $server->server_statistics_id = $row->id;
+                $server->save();
             }
 
         } catch (ModelNotFoundException $e) {

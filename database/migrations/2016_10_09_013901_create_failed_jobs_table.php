@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServerStatisticsTable extends Migration
+class CreateFailedJobsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateServerStatisticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('server_statistics', function (Blueprint $table) {
+        Schema::create('failed_jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('server_id')->unsigned();
-            $table->json('daily_stats');
-            $table->integer('highest_peak')->unsigned()->default(0);
-            $table->timestamps();
+            $table->text('connection');
+            $table->text('queue');
+            $table->longText('payload');
+            $table->longText('exception');
+            $table->timestamp('failed_at')->useCurrent();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateServerStatisticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('server_statistics');
+        Schema::dropIfExists('failed_jobs');
     }
 }

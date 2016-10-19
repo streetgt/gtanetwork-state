@@ -8,7 +8,7 @@ use App\Stats;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerOnlinePlayers implements ShouldQueue
+class UpdateServerOnlinePlayers //implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -24,10 +24,18 @@ class UpdateServerOnlinePlayers implements ShouldQueue
 
             $server = Server::where('ip', $item->get('IP'))->firstOrFail();
 
-            $server->playersOnline()->updateOrCreate([
+            $data = [
                 'currentplayers' => $item->get('CurrentPlayers'),
                 'maxplayers'     => $item->get('MaxPlayers'),
-            ]);
+            ];
+
+            if ($server->playersOnline()->count()) {
+                $server->playersOnline()->update($data);
+            } else {
+                $row = $server->playersOnline()->create($data);
+                $server->server_players_online_id = $row->id;
+                $server->save();
+            }
 
             $today_stats = Stats::where('date', Carbon::today())->first();
 

@@ -15,14 +15,15 @@ class CreateServersTable extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('servername');
+            $table->string('servername')->nullable(false);
             $table->string('ip')->unique();
             $table->integer('port')->unsigned();
             $table->string('gamemode')->nullable();
             $table->string('map')->nullable();
             $table->string('country')->nullable();
+            $table->integer('server_players_online_id')->unsigned()->nullable();
+            $table->integer('server_statistics_id')->unsigned()->nullable();
             $table->timestamps();
-
         });
     }
 
@@ -33,6 +34,6 @@ class CreateServersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('servers');
+        Schema::dropIfExists('servers');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlayersOnlineTable extends Migration
+class CreateServerPlayersOnlineTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePlayersOnlineTable extends Migration
      */
     public function up()
     {
-        Schema::create('players_online', function (Blueprint $table) {
+        Schema::create('server_players_online', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('server_id')->unsigned();
             $table->integer('currentplayers')->unsigned()->default(0);
             $table->integer('maxplayers')->unsigned()->default(0);
-            $table->foreign('server_id')->references('id')->on('servers');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreatePlayersOnlineTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('players_online');
+        Schema::dropIfExists('server_players_online');
     }
 }

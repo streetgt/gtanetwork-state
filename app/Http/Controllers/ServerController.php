@@ -110,27 +110,6 @@ class ServerController extends Controller
         return $response;
     }
 
-    public function information($ip)
-    {
-        $server = Server::where('ip', $ip)->first();
-
-        if ($server == null) {
-            return "server not found";
-        }
-
-        $playersOnline = $server->playersOnline;
-        $statistics = $server->statistics;
-
-//        dd($statistics->daily_stats);
-
-        echo 'Highest Peak: ' . $statistics->highest_peak;
-        foreach (json_decode($statistics->daily_stats) as $hour) {
-            echo $hour;
-        }
-//        dd($playersOnline);
-
-    }
-
     /**
      * Search POST
      *

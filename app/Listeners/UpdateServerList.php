@@ -9,7 +9,7 @@ use App\Events\UpdateServerStatisticsEvent;
 use Illuminate\Database\QueryException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerList implements ShouldQueue
+class UpdateServerList //implements ShouldQueue
 {
 
     /**
@@ -18,12 +18,19 @@ class UpdateServerList implements ShouldQueue
     private $client;
 
     /**
+     * @var Server
+     */
+    private $server;
+
+    /**
      * UpdateServerList constructor.
      * @param Client $client
+     * @param Server $server
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, Server $server)
     {
         $this->client = $client;
+        $this->server = $server;
     }
 
     /**
@@ -38,7 +45,7 @@ class UpdateServerList implements ShouldQueue
 
         try {
 
-            $server = Server::updateOrCreate([
+            Server::updateOrCreate([
                 'ip'         => $element->get('IP'),
                 'port'       => $element->get('Port'),
                 'servername' => $element->get('ServerName'),
@@ -47,12 +54,9 @@ class UpdateServerList implements ShouldQueue
                 'country'    => $this->getCountry($element->get('IP')),
             ]);
 
-            $server->playersOnline()->updateOrCreate([
-                'maxplayers'     => $element->get('MaxPlayers'),
-                'currentplayers' => $element->get('CurrentPlayers'),
-            ]);
-
             event(new UpdateServerStatisticsEvent($element));
+
+            event(new UpdateServerOnlinePlayers($element));
 
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];

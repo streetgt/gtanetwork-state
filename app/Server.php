@@ -23,18 +23,24 @@ class Server extends Model
         'gamemode',
         'map',
         'country',
+        'players_online_id',
+        'server_statistics_id',
     ];
 
     /**
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function statistics()
     {
-        return $this->hasOne('App\ServerStatistic');
+        return $this->hasOne('App\ServerStatistic', 'server_id', 'id');
     }
 
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function playersOnline()
     {
-        return $this->hasOne('App\PlayersOnline');
+        return $this->hasOne('App\PlayersOnline', 'server_id', 'id');
     }
 }

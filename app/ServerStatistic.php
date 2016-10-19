@@ -20,8 +20,13 @@ class ServerStatistic extends Model
         'highest_peak',
     ];
 
+    /**
+     * Relationship belongs to Server
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function server()
     {
-        return $this->belongsTo('App\Server');
+        return $this->belongsTo('App\Server','server_id');
     }
 }
