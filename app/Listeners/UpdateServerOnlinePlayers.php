@@ -8,7 +8,7 @@ use App\Stats;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerOnlinePlayers //implements ShouldQueue
+class UpdateServerOnlinePlayers implements ShouldQueue
 {
     /**
      * Handle the event.

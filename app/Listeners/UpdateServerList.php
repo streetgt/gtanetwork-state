@@ -9,7 +9,7 @@ use App\Events\UpdateServerStatisticsEvent;
 use Illuminate\Database\QueryException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerList //implements ShouldQueue
+class UpdateServerList implements ShouldQueue
 {
 
     /**

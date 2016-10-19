@@ -9,7 +9,7 @@ use App\Events\UpdateServerEvent;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerStatistics //implements ShouldQueue
+class UpdateServerStatistics implements ShouldQueue
 {
     /**
      * Handle the event.
