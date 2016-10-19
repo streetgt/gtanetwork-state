@@ -8,7 +8,7 @@ use App\Stats;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerOnlinePlayers implements ShouldQueue
+class UpdateServerOnlinePlayers //implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -37,11 +37,11 @@ class UpdateServerOnlinePlayers implements ShouldQueue
                 $server->save();
             }
 
-            $today_stats = Stats::where('date', Carbon::today())->first();
+            $today_stats = Stats::where('date', Carbon::today('Europe/Lisbon'))->first();
 
             if ($today_stats == null) {
                 Stats::create([
-                    'date' => Carbon::today(),
+                    'date' => Carbon::today('Europe/Lisbon'),
                     'min'  => $item->get('CurrentPlayers'),
                     'max'  => $item->get('CurrentPlayers'),
                     'avg'  => "[0,0,0,0]"
@@ -53,7 +53,7 @@ class UpdateServerOnlinePlayers implements ShouldQueue
 
                 $avg = json_decode($today_stats->avg);
 
-                switch (Carbon::now()->hour) {
+                switch (Carbon::now('Europe/Lisbon')->hour) {
                     case 0:
                         $avg[0] = $cur;
                         break;
