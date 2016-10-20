@@ -2,13 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Server;
-use App\Events\UpdatePlayersOnlineEvent;
 use App\Stats;
+use App\Server;
+use App\PlayersOnline;
+use App\Events\UpdatePlayersOnlineEvent;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerOnlinePlayers //implements ShouldQueue
+class UpdateServerOnlinePlayers implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -19,6 +20,8 @@ class UpdateServerOnlinePlayers //implements ShouldQueue
     public function handle(UpdatePlayersOnlineEvent $event)
     {
         $item = $event->server;
+
+        $this->updateTodayStats();
 
         try {
 
@@ -37,48 +40,55 @@ class UpdateServerOnlinePlayers //implements ShouldQueue
                 $server->save();
             }
 
-            $today_stats = Stats::where('date', Carbon::today('Europe/Lisbon'))->first();
-
-            if ($today_stats == null) {
-                Stats::create([
-                    'date' => Carbon::today('Europe/Lisbon'),
-                    'min'  => $item->get('CurrentPlayers'),
-                    'max'  => $item->get('CurrentPlayers'),
-                    'avg'  => "[0,0,0,0]"
-                ]);
-            } else {
-                $cur = $item->get('CurrentPlayers');
-                $min = $today_stats->min;
-                $max = $today_stats->max;
-
-                $avg = json_decode($today_stats->avg);
-
-                switch (Carbon::now('Europe/Lisbon')->hour) {
-                    case 0:
-                        $avg[0] = $cur;
-                        break;
-                    case 6:
-                        $avg[1] = $cur;
-                        break;
-                    case 12:
-                        $avg[2] = $cur;
-                        break;
-                    case 18:
-                        $avg[3] = $cur;
-                        break;
-                }
-
-                $today_stats->update([
-                    'min' => $cur < $min ? $cur : $min,
-                    'max' => $cur > $max ? $cur : $max,
-                    'avg' => json_encode($avg),
-                ]);
-
-            }
-
         } catch (ModelNotFoundException $e) {
             // If server don't event exist lets add them in the list
             event(new UpdateServerEvent($item));
+        }
+    }
+
+    /**
+     * Updates the stats from today online servers
+     */
+    private function updateTodayStats()
+    {
+        $today_stats = Stats::where('date', Carbon::today('Europe/Lisbon'))->first();
+
+        $current_players = PlayersOnline::sum('currentplayers');
+
+        if ($today_stats == null) {
+            Stats::create([
+                'date' => Carbon::today('Europe/Lisbon'),
+                'min'  => $current_players,
+                'max'  => $current_players,
+                'avg'  => "[0,0,0,0]"
+            ]);
+        } else {
+
+            $min = $today_stats->min;
+            $max = $today_stats->max;
+            $avg = json_decode($today_stats->avg);
+
+            switch (Carbon::now('Europe/Lisbon')->hour) {
+                case 0:
+                    $avg[0] < $current_players ? $current_players : $avg[0];
+                    break;
+                case 6:
+                    $avg[1] < $current_players ? $current_players : $avg[1];
+                    break;
+                case 12:
+                    $avg[2] < $current_players ? $current_players : $avg[2];
+                    break;
+                case 18:
+                    $avg[3] < $current_players ? $current_players : $avg[3];
+                    break;
+            }
+
+            $today_stats->update([
+                'min' => $current_players < $min ? $current_players : $min,
+                'max' => $current_players > $max ? $current_players : $max,
+                'avg' => json_encode($avg),
+            ]);
+
         }
     }
 }
