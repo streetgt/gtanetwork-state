@@ -80,18 +80,19 @@
                             id: "y-axis-1",
                             display: true,
                             ticks: {
+                                max: {{ ($players['max']) }},
                                 min: {{ $players['min'] }},
-                                max: {{ $players['max']+1000 }},
                             }
                         }, {
                             type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                             display: false,
                             id: "y-axis-2",
+
                         }, {
                             type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                             display: false,
                             id: "y-axis-3",
-                            // grid line settings
+
                         }],
                     }
                 }
