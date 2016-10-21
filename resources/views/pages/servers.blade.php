@@ -4,18 +4,21 @@
     <div class="jumbotron">
         <div class="faq">
             <p class="lead network"><b>Servers</b></p>
-            <table class="table table-bordered" id="players-table">
-                <thead>
-                <tr>
-                    <th>Country</th>
-                    <th>Name</th>
-                    <th>Current Players</th>
-                    <th>Max Players</th>
-                    <th>IP</th>
-                    <th>Join</th>
-                </tr>
-                </thead>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered dt-right" id="players-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Country</th>
+                        <th>Name</th>
+                        <th>Current Players</th>
+                        <th>Max Players</th>
+                        <th>IP</th>
+                        <th>Join</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 @endsection
@@ -24,11 +27,17 @@
     <script>
         $(function() {
             $("#players-table").DataTable({
+                responsive: true,
                 processing: false,
                 serverSide: true,
                 ajax: '{!! route('api.servers') !!}',
                 columns: [
-                    { data: 'country', name: 'country' },
+                    { data: 'passworded', name: 'passworded', orderable: false,
+                        render: function (passworded) {
+                            return passworded ? '<i class="fa fa-lock" aria-hidden="true"></i></a>' : '';
+                        }
+                    },
+                    { data: 'country', name: 'country' , className: "dt-center"},
                     { data: 'servername', name: 'servername' },
                     { data: 'currentplayers', name: 'currentplayers' },
                     { data: 'maxplayers', name: 'maxplayers' },

@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PlayersOnline extends Model
+class ServerInfo extends Model
 {
     /**
      * @var string
      */
-    protected $table = 'server_players_online';
+    protected $table = 'server_info';
 
     /**
      * @var array

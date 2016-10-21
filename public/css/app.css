@@ -8076,6 +8076,24 @@ body {
   .breadcrumb li a {
     color: #6f99bb; }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: #333 !important; }
+  .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+    color: #ffffff !important; }
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #363636 !important;
+  border: 0 !important; }
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #6f99bb !important;
+  color: #ffffff !important;
+  border: 0 !important; }
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: #363636 !important;
+    color: #ffffff !important;
+    border: 0 !important; }
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */

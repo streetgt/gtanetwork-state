@@ -6,7 +6,7 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Collection;
 
-class UpdatePlayersOnlineEvent
+class UpdateServerInfoEvent
 {
     use  SerializesModels;
 

@@ -39,8 +39,8 @@ class Server extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function playersOnline()
+    public function info()
     {
-        return $this->hasOne('App\PlayersOnline', 'server_id', 'id');
+        return $this->hasOne('App\ServerInfo', 'server_id', 'id');
     }
 }

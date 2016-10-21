@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Stats;
-use App\PlayersOnline;
+use App\ServerInfo;
 use App\Http\Requests;
 
 class PageController extends Controller
@@ -37,17 +37,17 @@ class PageController extends Controller
         $today = Stats::where('date', Carbon::today())->first();
 
         $players = [
-            'today_current' => $players = PlayersOnline::sum('currentplayers'),
-            'today_min'   => $today->min,
-            'today_max'   => $today->max,
-            'today_avg'   => round(array_sum(json_decode($today->avg)) / 4),
-            'min'   =>  Stats::orderBy('min', 'ASC')->pluck('min')->first(),
-            'max'   =>  Stats::orderBy('max', 'DES')->pluck('max')->first()
+            'today_current' => $players = ServerInfo::sum('currentplayers'),
+            'today_min'     => $today->min,
+            'today_max'     => $today->max,
+            'today_avg'     => round(array_sum(json_decode($today->avg)) / 4),
+            'min'           => Stats::orderBy('min', 'ASC')->pluck('min')->first(),
+            'max'           => Stats::orderBy('max', 'DES')->pluck('max')->first()
         ];
 
         $stats = Stats::orderBy('date', 'ASC')->get();
 
-        return view('pages.stats',compact('stats','players'));
+        return view('pages.stats', compact('stats', 'players'));
     }
 
     /**

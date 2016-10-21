@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Events\UpdatePlayersOnlineEvent;
 use App\Events\UpdateServerEvent;
+use App\Events\UpdateServerInfoEvent;
 use App\Events\UpdateServerStatisticsEvent;
 use App\Services\ApiServiceCaller;
 use Illuminate\Console\Command;
@@ -55,7 +55,7 @@ class ListServers extends Command
             switch ($option) {
                 case 0: event(new UpdateServerEvent($collection)); break;
                 case 1: event(new UpdateServerStatisticsEvent($collection)); break;
-                case 2: event(new UpdatePlayersOnlineEvent($collection)); break;
+                case 2: event(new UpdateServerInfoEvent($collection)); break;
                 default: event(new UpdateServerEvent($collection)); break;
             }
         }

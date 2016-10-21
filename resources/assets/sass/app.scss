@@ -193,6 +193,29 @@ body {
     }
   }
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: #333 !important;
+  &:hover {
+    color: #ffffff !important;
+  }
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    .paginate_button:hover {
+      background: $color_grey !important;
+      border: 0 !important;
+    }
+    .paginate_button.current {
+      background: $color_blue !important;
+      color: #ffffff !important;
+      border: 0 !important;
+      &:hover {
+        background: $color_grey !important;
+        color: #ffffff !important;
+        border: 0 !important;
+      }
+    }
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */

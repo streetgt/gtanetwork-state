@@ -26,8 +26,8 @@ class ServerController extends Controller
             return "server not found";
         }
 
-        $slots = $server->playersOnline->maxplayers;
-        $currentPlayers = $server->playersOnline->currentplayers;
+        $slots = $server->info->maxplayers;
+        $currentPlayers = $server->info->currentplayers;
 
         $font_url = public_path() . '/fonts/visitor2.ttf';
 
@@ -100,8 +100,8 @@ class ServerController extends Controller
         // GTA Network - Logotipo
         $gtan_url = public_path() . '/images/logo.png';
         $gtan = Image::make($gtan_url);
-        $gtan->resize(14,14);
-        $img->insert($gtan, 'left', 10,10);
+        $gtan->resize(14, 14);
+        $img->insert($gtan, 'left', 10, 10);
 
         $response = Response::make($img->encode('png'));
 
@@ -124,7 +124,7 @@ class ServerController extends Controller
             return redirect()->route('homepage')->withErrors('The server you are trying to find does not exist.');
         }
 
-        return redirect()->route('server.getSearch',$request->input('ip'));
+        return redirect()->route('server.getSearch', $request->input('ip'));
     }
 
     /**
@@ -142,10 +142,11 @@ class ServerController extends Controller
         }
 
         $statistics = $server->statistics;
-        $playersOnline = $server->playersOnline;
+        $playersOnline = $server->info;
 
-        return view('servers.information',compact('server','statistics','playersOnline'));
+        return view('servers.information', compact('server', 'statistics', 'playersOnline'));
     }
+
     /**
      * Function to map
      *

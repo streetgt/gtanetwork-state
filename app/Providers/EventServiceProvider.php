@@ -19,8 +19,8 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UpdateServerStatisticsEvent' => [
             'App\Listeners\UpdateServerStatistics',
         ],
-        'App\Events\UpdatePlayersOnlineEvent' => [
-            'App\Listeners\UpdateServerOnlinePlayers',
+        'App\Events\UpdateServerInfoEvent' => [
+            'App\Listeners\UpdateServerInfo',
         ],
     ];
 

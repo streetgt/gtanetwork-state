@@ -4,20 +4,20 @@ namespace App\Listeners;
 
 use App\Stats;
 use App\Server;
-use App\PlayersOnline;
-use App\Events\UpdatePlayersOnlineEvent;
+use App\ServerInfo;
+use App\Events\UpdateServerInfoEvent;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerOnlinePlayers implements ShouldQueue
+class UpdateServerInfo implements ShouldQueue
 {
     /**
      * Handle the event.
      *
-     * @param  UpdatePlayersOnlineEvent $event
+     * @param  UpdateServerInfoEvent $event
      * @return void
      */
-    public function handle(UpdatePlayersOnlineEvent $event)
+    public function handle(UpdateServerInfoEvent $event)
     {
         $item = $event->server;
 
@@ -30,12 +30,13 @@ class UpdateServerOnlinePlayers implements ShouldQueue
             $data = [
                 'currentplayers' => $item->get('CurrentPlayers'),
                 'maxplayers'     => $item->get('MaxPlayers'),
+                'passworded'     => $item->get('Passworded')
             ];
 
-            if ($server->playersOnline()->count()) {
-                $server->playersOnline()->update($data);
+            if ($server->info()->count()) {
+                $server->info()->update($data);
             } else {
-                $row = $server->playersOnline()->create($data);
+                $row = $server->info()->create($data);
                 $server->server_players_online_id = $row->id;
                 $server->save();
             }
@@ -53,7 +54,7 @@ class UpdateServerOnlinePlayers implements ShouldQueue
     {
         $today_stats = Stats::where('date', Carbon::today('Europe/Lisbon'))->first();
 
-        $current_players = PlayersOnline::sum('currentplayers');
+        $current_players = ServerInfo::sum('currentplayers');
 
         if ($today_stats == null) {
             Stats::create([

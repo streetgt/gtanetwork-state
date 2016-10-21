@@ -56,7 +56,7 @@ class UpdateServerList implements ShouldQueue
 
             event(new UpdateServerStatisticsEvent($element));
 
-            event(new UpdateServerOnlinePlayers($element));
+            event(new UpdateServerInfoEvent($element));
 
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];
