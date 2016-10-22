@@ -5,6 +5,7 @@ namespace App\Listeners;
 use GuzzleHttp\Client;
 use App\Server;
 use App\Events\UpdateServerEvent;
+use App\Events\UpdateServerInfoEvent;
 use App\Events\UpdateServerStatisticsEvent;
 use Illuminate\Database\QueryException;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -71,7 +72,7 @@ class UpdateServerList implements ShouldQueue
                     'country'    => $this->getCountry($element->get('IP')),
                 ]);
 
-                event(new UpdateServerStatistics($element));
+                event(new UpdateServerStatisticsEvent($element));
             }
         }
     }
