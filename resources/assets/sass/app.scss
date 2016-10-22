@@ -9,6 +9,9 @@
 @import "node_modules/font-awesome/scss/font-awesome.scss";
 // DataTables
 @import url("//cdn.datatables.net/1.10.7/css/jquery.dataTables.css");
+//Flags
+@import "flag-icon/flag-icon";
+
 
 /* Space out content a bit */
 
@@ -219,6 +222,19 @@ body {
       border: 0 !important;
     }
   }
+}
+
+table.dataTable thead th.sorting,
+table.dataTable thead th.sorting_asc,
+table.dataTable thead th.sorting_desc {
+  background : none;
+}
+
+.dataTables_filter input {
+  outline: none;
+  border-radius: 10px;
+  padding-left: 5px;
+  border: 1px $color_grey solid;
 }
 
 @media screen and (min-width: 768px) {

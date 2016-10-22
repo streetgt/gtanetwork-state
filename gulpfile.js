@@ -18,4 +18,8 @@ elixir(function(mix) {
         '../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
         '../../../node_modules/datatables.net/js/jquery.dataTables.js',
     ], 'public/js/app.js');
+    // mix.styles([
+    //     '../../../public/css/app.css',
+    //     '../../../public/css/flags.css'
+    // ], 'public/css/app.css');
 });
