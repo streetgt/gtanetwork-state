@@ -8094,17 +8094,20 @@ body {
     color: #ffffff !important;
     border: 0 !important; }
 
-/* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
   .header, .marketing, .footer {
     padding-right: 0;
     padding-left: 0; }
-  /* Space out the masthead */
   .header {
     margin-bottom: 30px; }
-  /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0; } }
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+  .header-content {
+    margin-bottom: 30px; }
+    .header-content h1 {
+      font-size: 38px; } }
 
 /*# sourceMappingURL=app.css.map */

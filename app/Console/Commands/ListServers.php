@@ -49,14 +49,21 @@ class ListServers extends Command
         $option = $this->argument('option');
         $servers = $this->api->getServerList();
 
-        foreach ($servers as $server)
-        {
+        foreach ($servers as $server) {
             $collection = collect($server);
             switch ($option) {
-                case 0: event(new UpdateServerEvent($collection)); break;
-                case 1: event(new UpdateServerStatisticsEvent($collection)); break;
-                case 2: event(new UpdateServerInfoEvent($collection)); break;
-                default: event(new UpdateServerEvent($collection)); break;
+                case 0:
+                    event(new UpdateServerEvent($collection));
+                    break;
+                case 1:
+                    event(new UpdateServerStatisticsEvent($collection));
+                    break;
+                case 2:
+                    event(new UpdateServerInfoEvent($collection));
+                    break;
+                default:
+                    event(new UpdateServerEvent($collection));
+                    break;
             }
         }
     }

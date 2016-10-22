@@ -1,5 +1,5 @@
 <div class="header clearfix">
-    <div class="text-center">
+    <div class="header-content text-center">
         <h1 class="text-muted">
             GTA <span>NETWORK</span> <i class="fa fa-globe"></i>
         </h1>

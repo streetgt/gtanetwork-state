@@ -62,6 +62,7 @@ body {
     width: 460px;
   }
 }
+
 .code {
   font-family: "Arial";
   font-size: 12px;
@@ -73,7 +74,7 @@ body {
       padding-bottom: 5px;
     }
   }
-  ul, ol{
+  ul, ol {
     padding-left: 25px;
   }
 }
@@ -121,7 +122,6 @@ body {
   }
 }
 
-
 /* Cleaning default **/
 .nav-pills {
   > li {
@@ -149,34 +149,36 @@ body {
     }
   }
 }
+
 .nav-tabs {
-    > li {
-      float: left;
-      // Make the list-items overlay the bottom border
-      margin-bottom: -1px;
+  > li {
+    float: left;
+    // Make the list-items overlay the bottom border
+    margin-bottom: -1px;
 
-      // Actual tabs (as links)
-      > a {
-        color: #FFF !important;
-        border: 0 !important;
+    // Actual tabs (as links)
+    > a {
+      color: #FFF !important;
+      border: 0 !important;
+      background-color: $color_blue !important;
+      &:hover {
         background-color: $color_blue !important;
-        &:hover {
-          background-color: $color_blue !important;
-        }
-      }
-
-      // Active state, and its :hover to override normal :hover
-      &.active > a {
-        &,
-        &:hover,
-        &:focus {
-          background-color: $color_grey !important;
-          border: 0 !important;
-        }
       }
     }
-    border-bottom: 0 !important;
+
+    // Active state, and its :hover to override normal :hover
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: $color_grey !important;
+        border: 0 !important;
+      }
+    }
+  }
+  border-bottom: 0 !important;
 }
+
 .panel {
   font-family: 'Open Sans', sans-serif;
   text-align: left !important;
@@ -185,6 +187,7 @@ body {
     color: $color_blue;
   }
 }
+
 .breadcrumb {
   text-align: left;
   li {
@@ -193,6 +196,7 @@ body {
     }
   }
 }
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
   color: #333 !important;
   &:hover {
@@ -201,34 +205,41 @@ body {
 }
 
 .dataTables_wrapper .dataTables_paginate {
-    .paginate_button:hover {
+  .paginate_button:hover {
+    background: $color_grey !important;
+    border: 0 !important;
+  }
+  .paginate_button.current {
+    background: $color_blue !important;
+    color: #ffffff !important;
+    border: 0 !important;
+    &:hover {
       background: $color_grey !important;
-      border: 0 !important;
-    }
-    .paginate_button.current {
-      background: $color_blue !important;
       color: #ffffff !important;
       border: 0 !important;
-      &:hover {
-        background: $color_grey !important;
-        color: #ffffff !important;
-        border: 0 !important;
-      }
     }
+  }
 }
-/* Responsive: Portrait tablets and up */
+
 @media screen and (min-width: 768px) {
-  /* Remove the padding we set earlier */
   .header, .marketing, .footer {
     padding-right: 0;
     padding-left: 0;
   }
-  /* Space out the masthead */
   .header {
     margin-bottom: 30px;
   }
-  /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  .header-content {
+    margin-bottom: 30px;
+    h1 {
+      font-size: 38px;
+    }
   }
 }
