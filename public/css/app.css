@@ -9406,6 +9406,10 @@ table.dataTable thead th.sorting_desc {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
+  .banner textarea {
+    width: 100%; }
+  .banner img {
+    width: 100%; }
   .header-content {
     margin-bottom: 30px; }
     .header-content h1 {
