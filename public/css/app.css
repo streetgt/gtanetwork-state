@@ -9410,6 +9410,8 @@ table.dataTable thead th.sorting_desc {
     width: 100%; }
   .banner img {
     width: 100%; }
+  .chart {
+    display: none !important; }
   .header-content {
     margin-bottom: 30px; }
     .header-content h1 {

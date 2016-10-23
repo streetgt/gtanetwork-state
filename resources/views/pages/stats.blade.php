@@ -10,7 +10,9 @@
                 <li><b>Min Players Today</b>: {{ $players['today_min'] }}</li>
                 <li><b>Max Players Today</b>: {{ $players['today_max'] }}</li>
             </ul>
-            <canvas id="players_chart" width="400" height="200"></canvas>
+            <div class="chart">
+                <canvas id="players_chart" width="400" height="200"></canvas>
+            </div>
         </div>
     </div>
 @endsection

@@ -35,10 +35,12 @@
                         @endif
                         <br>
 
-                        <hr>
-                        <p>
-                            <canvas id="server_chart" width="400" height="100"></canvas>
-                        </p>
+                        <div class="chart">
+                            <hr>
+                            <p>
+                                <canvas id="server_chart" width="400" height="100"></canvas>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
