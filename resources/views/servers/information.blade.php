@@ -24,7 +24,7 @@
                         <b>Name</b>: {{ $server->servername }}<br>
                         <b>IP</b>: <a src="gtan://{{ $server->ip }}">{{ $server->ip }} <i class="fa fa-sign-in" aria-hidden="true"></i></a><br>
                         <b>Gamemode</b>: {{ $server->gamemode }}<br>
-                        <b>Location</b>: <span class="flag-icon flag-icon-{{ strtolower($server->country) }} flag-icon-squared"></span>
+                        <b>Country</b>: <img src="{{ asset('images/flags/18x12/' . strtolower($server->country)) }}.gif">
 
                         <h3>Players Information</h3>
                         <b>Players Online</b>: {{ $playersOnline->currentplayers }}<br>

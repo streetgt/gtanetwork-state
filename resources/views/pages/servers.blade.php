@@ -39,7 +39,7 @@
                     },
                     { data: 'country', name: 'country', className: "dt-center",
                         render: function (country) {
-                            return '<span class="flag-icon flag-icon-'+country.toLowerCase()+' flag-icon-squared"></span>';
+                            return '<img src="/images/flags/18x12/' + country.toLowerCase() + '.gif">';
                         }
                     },
                     { data: 'servername', name: 'servername' },

@@ -103,6 +103,12 @@ class ServerController extends Controller
         $gtan->resize(14, 14);
         $img->insert($gtan, 'left', 10, 10);
 
+        // Country Flag
+        $flag_url = public_path() . '/images/flags/18x12/' . strtolower($server->country) . '.gif';
+        $fag = Image::make($flag_url);
+//        $fag->resize(14, 14);
+        $img->insert($fag, 'right', 3, 10);
+
         $response = Response::make($img->encode('png'));
 
         $response->header('Content-Type', 'image/png');
