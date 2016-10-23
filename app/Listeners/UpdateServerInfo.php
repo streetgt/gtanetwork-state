@@ -26,6 +26,7 @@ class UpdateServerInfo implements ShouldQueue
         try {
 
             $server = Server::where('ip', $item->get('IP'))->firstOrFail();
+            array_push($servers_id, $server->id);
 
             $data = [
                 'currentplayers' => $item->get('CurrentPlayers'),

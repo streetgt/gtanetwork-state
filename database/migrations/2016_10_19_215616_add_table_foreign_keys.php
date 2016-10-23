@@ -19,11 +19,11 @@ class AddTableForeignKeys extends Migration
         });
 
         Schema::table('server_statistics', function (Blueprint $table) {
-            $table->foreign('server_id')->references('id')->on('servers');
+            $table->foreign('server_id')->references('id')->on('servers')->onDelete('cascade');
         });
 
         Schema::table('server_players_online', function (Blueprint $table) {
-            $table->foreign('server_id')->references('id')->on('servers');
+            $table->foreign('server_id')->references('id')->on('servers')->onDelete('cascade');
         });
     }
 

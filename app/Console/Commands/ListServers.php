@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use DB;
+use Carbon\Carbon;
 use App\Events\UpdateServerEvent;
 use App\Events\UpdateServerInfoEvent;
 use App\Events\UpdateServerStatisticsEvent;
@@ -49,6 +51,12 @@ class ListServers extends Command
         $option = $this->argument('option');
         $servers = $this->api->getServerList();
 
+        if ($option == 2) {
+            $this->updateOldServersInfo($servers);
+        } else if ($option == 0) {
+            $this->deleteOldServers();
+        }
+
         foreach ($servers as $server) {
             $collection = collect($server);
             switch ($option) {
@@ -66,5 +74,35 @@ class ListServers extends Command
                     break;
             }
         }
+    }
+
+    /**
+     *  Update servers that are not yet updated
+     *
+     * @param $servers
+     * @return array
+     */
+    private function updateOldServersInfo($servers)
+    {
+        $updated = array();
+        foreach ($servers as $server) {
+            $id = DB::table('servers')->where('ip', $server->IP)->pluck('id')->first();
+            if ($id != null) {
+                array_push($updated, $id);
+            }
+        }
+
+        DB::table('server_info')
+            ->whereNotIn('server_id', array_values($updated))
+            ->update(['currentplayers' => 0]);
+    }
+
+    /**
+     * Delete old servers that are not listed
+     */
+    private function deleteOldServers()
+    {
+        $servers = DB::table('server_info')->where('updated_at','<=',Carbon::now()->subHours(2))->pluck('server_id')->toArray();
+        DB::table('servers')->whereIn('id',array_values($servers))->delete();
     }
 }
