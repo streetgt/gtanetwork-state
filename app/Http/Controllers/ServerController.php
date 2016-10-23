@@ -79,7 +79,7 @@ class ServerController extends Controller
         $per_hour = 2;
 
         $last = [269 + $per_hour, 17, 269 + $per_hour, 3];
-        foreach ($daily_stats as $key => $day) {
+        foreach (array_reverse($daily_stats) as $key => $day) {
 
             $last[0] += $per_hour;
             $last[2] += $per_hour;
