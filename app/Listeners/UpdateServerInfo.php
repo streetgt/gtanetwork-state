@@ -7,6 +7,7 @@ use App\Server;
 use App\ServerInfo;
 use App\Events\UpdateServerInfoEvent;
 use Carbon\Carbon;
+use Dompdf\Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UpdateServerInfo implements ShouldQueue
@@ -25,7 +26,13 @@ class UpdateServerInfo implements ShouldQueue
 
         try {
 
-            $server = Server::where('ip', $item->get('IP'))->firstOrFail();
+            $server = Server::where('ip', $item->get('IP'))->first();
+
+            if($server == null) {
+                event(new UpdateServerEvent($item));
+                return;
+            }
+
             array_push($servers_id, $server->id);
 
             $data = [
@@ -42,9 +49,9 @@ class UpdateServerInfo implements ShouldQueue
                 $server->save();
             }
 
-        } catch (ModelNotFoundException $e) {
+        } catch (Exception $e) {
             // If server don't event exist lets add them in the list
-            event(new UpdateServerEvent($item));
+            dd('Crashed: ' . $e->getMessage());
         }
     }
 
