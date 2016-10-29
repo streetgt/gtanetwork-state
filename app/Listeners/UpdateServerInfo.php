@@ -5,12 +5,13 @@ namespace App\Listeners;
 use App\Stats;
 use App\Server;
 use App\ServerInfo;
+use App\Events\UpdateServerEvent;
 use App\Events\UpdateServerInfoEvent;
 use Carbon\Carbon;
 use Dompdf\Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerInfo implements ShouldQueue
+class UpdateServerInfo //implements ShouldQueue
 {
     /**
      * Handle the event.
@@ -32,8 +33,6 @@ class UpdateServerInfo implements ShouldQueue
                 event(new UpdateServerEvent($item));
                 return;
             }
-
-            array_push($servers_id, $server->id);
 
             $data = [
                 'currentplayers' => $item->get('CurrentPlayers'),
