@@ -71,6 +71,11 @@ body {
   font-size: 12px;
 }
 
+#code-area {
+  width: 100%;
+  resize: vertical;
+}
+
 .faq {
   ul {
     li {
