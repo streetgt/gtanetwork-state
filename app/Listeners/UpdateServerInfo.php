@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Dompdf\Exception;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UpdateServerInfo //implements ShouldQueue
+class UpdateServerInfo implements ShouldQueue
 {
     /**
      * Handle the event.
