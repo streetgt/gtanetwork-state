@@ -90,6 +90,9 @@ class PageController extends Controller
                 throw new Exception('The souce code you provided could not be resolved as a valid XML.');
             }
             $xml = new \SimpleXMLElement($request_xml, null, false);
+            if ( ! isset($xml->Objects->MapObject)) {
+                throw new Exception('The souce code you provided is not a valid Guadmaz Map Editor source.');
+            }
         } catch (Exception $e) {
             return view('pages.map')->withErrors($e->getMessage());
         }
@@ -107,6 +110,12 @@ class PageController extends Controller
         return view('pages.map', compact('code'));
     }
 
+    /**
+     * Converts a XML File to Array
+     *
+     * @param \SimpleXMLElement $parent
+     * @return array
+     */
     private function XML2Array(\SimpleXMLElement $parent)
     {
         $array = array();

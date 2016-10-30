@@ -42,14 +42,14 @@
                             return '<img src="/images/flags/18x12/' + country.toLowerCase() + '.gif">';
                         }
                     },
-                    { data: 'servername', name: 'servername' },
-                    { data: 'currentplayers', name: 'currentplayers', className: "dt-center"},
-                    { data: 'maxplayers', name: 'maxplayers', className: "dt-center" },
-                    { data: 'ip', name: 'ip',
-                        render: function (ip) {
-                            return '<a href="{!! Request::root() !!}/server/search/'+ip+'">' + ip + '</a>';
+                    { data: 'servername', name: 'servername',
+                        render: function (data, type, row) {
+                            return '<a href="{!! Request::root() !!}/server/search/' + row.ip + '">' + row.servername + '</a>';
                         }
                     },
+                    { data: 'currentplayers', name: 'currentplayers', className: "dt-center"},
+                    { data: 'maxplayers', name: 'maxplayers', className: "dt-center" },
+                    { data: 'ip', name: 'ip' },
                     { data: 'ip', orderable: false, className: "dt-center",
                         render: function (ip) {
                             return '<a href="gtan://'+ip+'"><i class="fa fa-sign-in" aria-hidden="true"></i></a>';
