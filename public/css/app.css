@@ -9287,7 +9287,8 @@ body {
 
 #code-area {
   width: 100%;
-  resize: vertical; }
+  resize: vertical;
+  font-size: 11px; }
 
 .faq ul li {
   padding-bottom: 5px; }

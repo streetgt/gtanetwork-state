@@ -18,19 +18,21 @@
                     <div class="form-group">
                         <select name="convertion-source" id="convertion-source">
                             <option value="0" selected>Guadmaz Map Editor - XML</option>
+                            <option value="1">Menyoo Object Spooner - XML</option>
+                            {{--<option value="2">GTA:NETWORK - CS</option>--}}
+                            {{--<option value="3">GTA:NETWORK - XML</option>--}}
                         </select>
+                        <select name="convertion-output" id="convertion-output">
+                            <option value="0" selected>GTA:NETWORK - CS</option>
+                            <option value="1">GTA:NETWORK - XML</option>
+                        </select>
+                        @if(isset($total))
+                            <span class="total-converted pull-right">Total: {{ $total }}</span>
+                        @endif
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            @if(isset($code))
-                                <textarea name="code-area" id="code-area" cols="30" rows="10">
-                                    @foreach($code as $item)
-                                        API.createObject({{ $item['id'] }},new Vector3({{ $item['position'][0] . ',' . $item['position'][1] .',' . $item['position'][2]}}), new Vector3({{ $item['rotation'][0] . ',' . $item['rotation'][1] .',' . $item['rotation'][2]}}));
-                                    @endforeach
-                                </textarea>
-                            @else
-                                <textarea name="code-area" id="code-area" cols="30" rows="10"></textarea>
-                            @endif
+                            <textarea name="code-area" id="code-area" cols="30" rows="10">{{ isset($code) ? implode("\n",$code) : '' }}</textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-network">Convert!</button>
