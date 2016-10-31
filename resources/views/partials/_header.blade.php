@@ -9,7 +9,12 @@
         <li role="presentation" class="{{ isActiveRoute('homepage') }}"><a href="{{ route('homepage') }}">Home</a></li>
         <li role="presentation" class="{{ isActiveRoute('servers') }}"><a href="{{ route('servers') }}">Servers</a></li>
         <li role="presentation" class="{{ isActiveRoute('stats') }}"><a href="{{ route('stats') }}">Stats</a></li>
-        <li role="presentation" class="{{ areActiveRoutes(['map.get','map.post']) }}"><a href="{{ route('map.get') }}">Map Converter</a></li>
+        {{--<li role="presentation" class="{{ areActiveRoutes(['map.get','map.post']) }}"><a href="{{ route('map.get') }}">Map Converter</a></li>--}}
+        <li class="dropdown {{ areActiveRoutes(['map.get','map.post']) }}"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utils<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="{{ areActiveRoutes(['map.get','map.post']) }}"><a href="{{ route('map.get') }}">Map Converter</a></li>
+            </ul>
+        </li>
         <li role="presentation" class="{{ isActiveRoute('faq') }}"><a href="{{ route('faq') }}">FAQ</a></li>
     </ul>
 </div>

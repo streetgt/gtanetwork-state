@@ -132,6 +132,12 @@ body {
 }
 
 /* Cleaning default **/
+.nav .open > a {
+  background-color: $color_grey;
+  &:hover, &:focus {
+    background-color: $color_grey;
+  }
+}
 .nav-pills {
   > li {
     > a {
@@ -186,6 +192,19 @@ body {
     }
   }
   border-bottom: 0 !important;
+}
+
+.dropdown-menu > .active > a {
+  color: #fff;
+  text-decoration: none;
+  outline: 0;
+  background-color: $color_grey;
+  &:hover, &:focus {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    background-color: $color_grey;
+  }
 }
 
 .panel {
@@ -269,6 +288,9 @@ table.dataTable thead th.sorting_desc {
   .chart {
     display: none !important;
   }
+}
+
+@media only screen and (max-width: 680px) {
   .header-content {
     margin-bottom: 30px;
     h1 {
