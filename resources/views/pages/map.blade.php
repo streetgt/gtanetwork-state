@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="jumbotron">
+        <ol class="breadcrumb">
+            <li><a href="{{ route('homepage') }}">Home</a></li>
+            <li>Utils</li>
+            <li class="active">Map Converter</li>
+        </ol>
         <div class="faq">
             <p class="lead network"><b>Map Converter</b></p>
             <div class="code-convertion">
@@ -14,7 +19,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('map.post') }}" method="POST">
+                <form action="{{ route('util.map.post') }}" method="POST">
                     <div class="form-group">
                         <select name="convertion-source" id="convertion-source">
                             <option value="0" selected>Guadmaz Map Editor - XML</option>

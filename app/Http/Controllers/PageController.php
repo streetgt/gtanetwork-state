@@ -61,4 +61,14 @@ class PageController extends Controller
     {
         return view('pages.servers');
     }
+
+    /**
+     * Display the Forum Stats page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function forumStats()
+    {
+        return view('pages.forum-stats');
+    }
 }

@@ -2,6 +2,10 @@
 
 @section('content')
     <div class="jumbotron">
+        <ol class="breadcrumb">
+            <li><a href="{{ route('homepage') }}">Home</a></li>
+            <li class="active">Stats</li>
+        </ol>
         <div class="faq">
             <p class="lead network"><b>Current Stats</b></p>
             <ul>
