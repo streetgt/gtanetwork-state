@@ -25,32 +25,25 @@ class UpdateServerInfo implements ShouldQueue
 
         $this->updateTodayStats();
 
-        try {
+        $server = Server::where('ip', $item->get('IP'))->first();
 
-            $server = Server::where('ip', $item->get('IP'))->first();
+        if($server == null) {
+            event(new UpdateServerEvent($item));
+            return;
+        }
 
-            if($server == null) {
-                event(new UpdateServerEvent($item));
-                return;
-            }
+        $data = [
+            'currentplayers' => $item->get('CurrentPlayers'),
+            'maxplayers'     => $item->get('MaxPlayers'),
+            'passworded'     => $item->get('Passworded')
+        ];
 
-            $data = [
-                'currentplayers' => $item->get('CurrentPlayers'),
-                'maxplayers'     => $item->get('MaxPlayers'),
-                'passworded'     => $item->get('Passworded')
-            ];
-
-            if ($server->info()->count()) {
-                $server->info()->update($data);
-            } else {
-                $row = $server->info()->create($data);
-                $server->server_players_online_id = $row->id;
-                $server->save();
-            }
-
-        } catch (Exception $e) {
-            // If server don't event exist lets add them in the list
-            dd('Crashed: ' . $e->getMessage());
+        if ($server->info()->count()) {
+            $server->info()->update($data);
+        } else {
+            $row = $server->info()->create($data);
+            $server->server_players_online_id = $row->id;
+            $server->save();
         }
     }
 
