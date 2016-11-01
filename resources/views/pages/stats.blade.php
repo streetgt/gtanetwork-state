@@ -6,9 +6,11 @@
             <p class="lead network"><b>Current Stats</b></p>
             <ul>
                 <li><b>Current Players</b>: {{ $players['today_current'] }}</li>
+                <li><b>Servers Online</b>: {{ $players['total_servers'] }}</li>
+                <hr>
+                <li><b>Max Players Today</b>: {{ $players['today_max'] }}</li>
                 <li><b>Avg Players Today</b>: {{ $players['today_avg'] }}</li>
                 <li><b>Min Players Today</b>: {{ $players['today_min'] }}</li>
-                <li><b>Max Players Today</b>: {{ $players['today_max'] }}</li>
             </ul>
             <div class="chart">
                 <canvas id="players_chart" width="400" height="200"></canvas>

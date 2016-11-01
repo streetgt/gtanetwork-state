@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Stats;
 use App\ServerInfo;
-use Dompdf\Exception;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -44,7 +43,8 @@ class PageController extends Controller
             'today_max'     => $today->max,
             'today_avg'     => round(array_sum(json_decode($today->avg)) / 4),
             'min'           => Stats::orderBy('min', 'ASC')->pluck('min')->first(),
-            'max'           => Stats::orderBy('max', 'DES')->pluck('max')->first()
+            'max'           => Stats::orderBy('max', 'DES')->pluck('max')->first(),
+            'total_servers' => ServerInfo::count(),
         ];
 
         $stats = Stats::orderBy('date', 'ASC')->get();

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Image;
 use App\Server;
-use App\Services\ApiServiceCaller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Response;
