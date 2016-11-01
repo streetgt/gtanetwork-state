@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title','Map Converter')
+
 @section('content')
     <div class="jumbotron">
         <ol class="breadcrumb">

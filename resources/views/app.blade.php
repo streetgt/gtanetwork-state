@@ -8,7 +8,7 @@
     <meta name="keywords" content="gtanetwork, game state, server info, multiplayer, server, information">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
 
-    <title>GTA Network - Server State</title>
+    <title>GTA Network Server State - @yield('title')</title>
 
     <!-- Application CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

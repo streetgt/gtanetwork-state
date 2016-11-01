@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title','Homepage')
+
 @section('content')
 <div class="jumbotron text-center">
     @if (count($errors) > 0)

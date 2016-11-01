@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title','Forum Stats')
+
 @section('content')
     <ol class="breadcrumb">
         <li><a href="{{ route('homepage') }}">Home</a></li>

@@ -1,5 +1,7 @@
 @extends('app')
 
+@section('title','Servers')
+
 @section('content')
     <div class="jumbotron">
         <ol class="breadcrumb">
