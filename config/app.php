@@ -177,6 +177,7 @@ return [
          */
         Intervention\Image\ImageServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Weidner\Goutte\GoutteServiceProvider::class,
     ],
 
     /*
@@ -230,6 +231,7 @@ return [
          */
         'Image' => Intervention\Image\Facades\Image::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'Goutte' => Weidner\Goutte\GoutteFacade::class,
 
     ],
 

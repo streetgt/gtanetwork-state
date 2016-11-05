@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use DB;
+use Goutte;
 use GuzzleHttp\Client;
 
 class ApiServiceCaller
@@ -45,6 +47,88 @@ class ApiServiceCaller
         $data = json_decode($response->getBody()->getContents());
 
         return $data->list;
+    }
+
+    public function getNatives()
+    {
+        $array_requests = [
+            "PLAYER",
+            "ENTITY",
+            "PED",
+            "VEHICLE",
+            "OBJECT",
+            "AI",
+            "GAMEPLAY",
+            "AUDIO",
+            "CUTSCENE",
+            "INTERIOR",
+            "CAM",
+            "WEAPON",
+            "ITEMSET",
+            "STREAMING",
+            "SCRIPT",
+            "UI",
+            "GRAPHICS",
+            "STATS",
+            "BRAIN",
+            "MOBILE",
+            "APP",
+            "TIME",
+            "PATHFIND",
+            "CONTROLS",
+            "DATAFILE",
+            "FIRE",
+            "DECISIONEVENT",
+            "ZONE",
+            "ROPE",
+            "WATER",
+            "WORLDPROBE",
+            "NETWORK",
+            "NETWORKCASH",
+            "DLC1",
+            "DLC2",
+            "SYSTEM",
+            "DECORATOR",
+            "SOCIALCLUB",
+            "UNK",
+            "UNK1",
+            "UNK2",
+            "UNK3"
+        ];
+
+        foreach ($array_requests as $word)
+        {
+            $crawler = Goutte::request('GET', 'http://www.dev-c.com/nativedb/ns/'.$word);
+            $ul = $crawler->filter('a[class="fn_trigger"]')->each(function ($node) {
+                return $node->text();
+            });
+            foreach ($ul as $native) {
+                if ( ! empty($native)) {
+
+                    $split = explode(' ', $native);
+                    $type = $split[0];
+                    $name = substr($native, strlen($split[0]) + 1, stripos($native, ')') - strlen($split[0]));
+                    if(substr($native, strlen($split[0])+1,1) == '*')
+                    {
+                        $type = $split[0] .'*';
+                        $name = substr($native, strlen($split[0])+2, stripos($native, ')') - strlen($split[0])-1);
+                    }
+
+                    $data = [
+                        'category' => $word,
+                        'type' => $type,
+                        'name' => $name,
+                        'hash' => '0x' . substr($native, stripos($native, '//') + 3, strlen($native)),
+                    ];
+
+                    if(DB::table('util_natives')->where('hash', $data['hash'])->first() == null)
+                    {
+                        DB::table('util_natives')->insert($data);
+                    }
+                }
+            }
+        }
+        //dd($natives);
     }
 
 }

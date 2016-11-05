@@ -71,4 +71,14 @@ class PageController extends Controller
     {
         return view('pages.forum-stats');
     }
+
+    /**
+     * Display the Natives page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function natives()
+    {
+        return view('pages.natives');
+    }
 }

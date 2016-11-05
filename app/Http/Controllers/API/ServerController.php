@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use DB;
 use App\Server;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests;
@@ -21,5 +22,15 @@ class ServerController extends Controller
                 'server_info.passworded as passworded');
 
         return Datatables::of($servers)->make(true);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function listNatives()
+    {
+        $natives = DB::table('util_natives');
+
+        return Datatables::of($natives)->make(true);
     }
 }

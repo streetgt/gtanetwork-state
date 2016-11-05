@@ -3,12 +3,12 @@
 @section('title','Forum Stats')
 
 @section('content')
-    <ol class="breadcrumb">
-        <li><a href="{{ route('homepage') }}">Home</a></li>
-        <li>Utils</li>
-        <li class="active">Forum Stats</li>
-    </ol>
     <div class="jumbotron">
+        <ol class="breadcrumb">
+            <li><a href="{{ route('homepage') }}">Home</a></li>
+            <li class="active">Utils</li>
+            <li class="active">Forum Stats</li>
+        </ol>
         <p class="lead network"><b>Forum Stats - October</b></p>
         <hr>
         <div class="chart">

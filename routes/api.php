@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/servers', 'API\ServerController@listServers')->name('api.servers');
+Route::get('/natives', 'API\ServerController@listNatives')->name('api.natives');

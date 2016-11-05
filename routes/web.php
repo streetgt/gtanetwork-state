@@ -18,6 +18,7 @@ Route::get('/servers', 'PageController@servers')->name('servers');
 
 /** Utils Routes */
 Route::group(['prefix' => 'util', 'as' => 'util.'], function () {
+    Route::get('/natives', 'PageController@natives')->name('natives');
     Route::get('/map', 'MapConverterController@getMap')->name('map.get');
     Route::post('/map', 'MapConverterController@postMap')->name('map.post');
     Route::get('/forum-stats', 'PageController@forumStats')->name('forum.stats');
