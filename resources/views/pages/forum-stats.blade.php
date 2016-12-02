@@ -199,7 +199,7 @@
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Forum Users - October'
+                    text: 'Forum Users - November'
                 },
                 scales: {
                     yAxes: [{
