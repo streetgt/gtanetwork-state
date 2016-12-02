@@ -1,7 +1,7 @@
 <div class="header clearfix">
     <div class="header-content text-center">
         <h1 class="text-muted">
-            GTA <span>NETWORK</span> <i class="fa fa-globe"></i>
+            <a href="{{ route('homepage') }}">GTA <span>NETWORK</span> <i class="fa fa-globe"></i></a>
         </h1>
         <span class="label label-danger">BETA</span>
     </div>

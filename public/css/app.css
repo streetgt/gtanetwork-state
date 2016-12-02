@@ -9268,6 +9268,11 @@ body {
     font-size: 45px; }
     .header h1 span {
       color: #6f99bb; }
+  .header a {
+    color: inherit;
+    /* blue colors for links too */
+    text-decoration: inherit;
+    /* no underline */ }
 
 .logo {
   width: 100px;
