@@ -18,7 +18,7 @@
         <p class="lead network"><b>Forum Stats - November</b></p>
         <hr>
         <div class="chart">
-            <canvas id="forum_stats_november" width="400" height="200"></canvas>
+            <canvas id="forum_stats_chart_november" width="400" height="200"></canvas>
         </div>
 
     </div>
