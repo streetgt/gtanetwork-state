@@ -57,6 +57,10 @@ class ListServers extends Command
             $this->deleteOldServers();
         }
 
+        if (empty($servers)) {
+            return;
+        }
+
         foreach ($servers as $server) {
             $collection = collect($server);
             switch ($option) {
@@ -87,11 +91,11 @@ class ListServers extends Command
      */
     private function updateOldServersInfo($servers)
     {
-        $updated = array();
+        $updated = [];
         foreach ($servers as $server) {
             $id = DB::table('servers')->where('ip', $server->IP)->pluck('id')->first();
             if ($id != null) {
-                array_push($updated, $id);
+                $updated[] = $id;
             }
         }
 
@@ -105,7 +109,7 @@ class ListServers extends Command
      */
     private function deleteOldServers()
     {
-        $servers = DB::table('server_info')->where('updated_at','<=',Carbon::now()->subHours(2))->pluck('server_id')->toArray();
-        DB::table('servers')->whereIn('id',array_values($servers))->delete();
+        $servers = DB::table('server_info')->where('updated_at', '<=', Carbon::now()->subHours(2))->pluck('server_id')->toArray();
+        DB::table('servers')->whereIn('id', array_values($servers))->delete();
     }
 }

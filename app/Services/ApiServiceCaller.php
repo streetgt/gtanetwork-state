@@ -5,6 +5,7 @@ namespace App\Services;
 use DB;
 use Goutte;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class ApiServiceCaller
 {
@@ -42,7 +43,13 @@ class ApiServiceCaller
 
 //        $data = json_decode($response);
 
-        $response = $this->client->request('GET', $this->uri);
+        try {
+            $response = $this->client->request('GET', $this->uri);
+        }
+        catch (ClientException $e)
+        {
+            return [];
+        }
 
         $data = json_decode($response->getBody()->getContents());
 
