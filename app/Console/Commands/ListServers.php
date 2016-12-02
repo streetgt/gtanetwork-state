@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use DB;
+use App\Stats;
+use App\ServerInfo;
 use Carbon\Carbon;
 use App\Events\UpdateServerEvent;
 use App\Events\UpdateServerInfoEvent;
@@ -53,6 +55,7 @@ class ListServers extends Command
 
         if ($option == 2) {
             $this->updateOldServersInfo($servers);
+            $this->updateTodayStats();
         } else if ($option == 0) {
             $this->deleteOldServers();
         }
@@ -111,5 +114,51 @@ class ListServers extends Command
     {
         $servers = DB::table('server_info')->where('updated_at', '<=', Carbon::now()->subHours(2))->pluck('server_id')->toArray();
         DB::table('servers')->whereIn('id', array_values($servers))->delete();
+    }
+
+    /**
+     * Updates the stats from today online servers
+     */
+    private function updateTodayStats()
+    {
+        $today_stats = Stats::where('date', Carbon::today('Europe/Lisbon'))->first();
+
+        $current_players = ServerInfo::sum('currentplayers');
+
+        if ($today_stats == null) {
+            Stats::create([
+                'date' => Carbon::today('Europe/Lisbon'),
+                'min'  => $current_players,
+                'max'  => $current_players,
+                'avg'  => "[0,0,0,0]"
+            ]);
+        } else {
+
+            $min = $today_stats->min;
+            $max = $today_stats->max;
+            $avg = json_decode($today_stats->avg);
+
+            switch (Carbon::now('Europe/Lisbon')->hour) {
+                case 0:
+                    $avg[0] < $current_players ? $current_players : $avg[0];
+                    break;
+                case 6:
+                    $avg[1] < $current_players ? $current_players : $avg[1];
+                    break;
+                case 12:
+                    $avg[2] < $current_players ? $current_players : $avg[2];
+                    break;
+                case 18:
+                    $avg[3] < $current_players ? $current_players : $avg[3];
+                    break;
+            }
+
+            $today_stats->update([
+                'min' => $current_players < $min ? $current_players : $min,
+                'max' => $current_players > $max ? $current_players : $max,
+                'avg' => json_encode($avg),
+            ]);
+
+        }
     }
 }
