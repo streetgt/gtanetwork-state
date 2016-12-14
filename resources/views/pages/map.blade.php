@@ -46,6 +46,9 @@
                     {{ csrf_field() }}
                 </form>
             </div>
+            <div class="info pull-right">
+                If the map converter is not working properly, use <a href="http://convert.eclipse-rp.net">this one</a>.
+            </div>
         </div>
     </div>
 @endsection
