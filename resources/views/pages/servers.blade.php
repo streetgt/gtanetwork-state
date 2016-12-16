@@ -50,7 +50,7 @@
                     },
                     { data: 'servername', name: 'servername',
                         render: function (data, type, row) {
-                            return '<a href="{!! Request::root() !!}/server/search/' + row.ip + '">' + row.servername + '</a>';
+                            return '<a href="{!! Request::root() !!}/server/search/' + row.ip + '">' + escapeHtml(row.servername) + '</a>';
                         }
                     },
                     { data: 'currentplayers', name: 'currentplayers', className: "dt-center"},
@@ -64,5 +64,16 @@
                 ]
             });
         });
+
+        function escapeHtml(text) {
+            var map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
     </script>
 @endsection
