@@ -44,9 +44,10 @@ class UpdateServerList implements ShouldQueue
     {
         $element = $event->server;
 
-        try {
+        $server = Server::where('ip', $element->get('IP'))->first();
 
-            Server::updateOrCreate([
+        if($server == null) {
+            Server::create([
                 'ip'         => $element->get('IP'),
                 'port'       => $element->get('Port'),
                 'servername' => $element->get('ServerName'),
@@ -58,22 +59,17 @@ class UpdateServerList implements ShouldQueue
             event(new UpdateServerStatisticsEvent($element));
 
             event(new UpdateServerInfoEvent($element));
+        } else {
+            $server->update([
+                'ip'         => $element->get('IP'),
+                'port'       => $element->get('Port'),
+                'servername' => $element->get('ServerName'),
+                'gamemode'   => $element->get('Gamemode'),
+                'map'        => $element->get('Map'),
+                'country'    => $this->getCountry($element->get('IP')),
+            ]);
 
-        } catch (QueryException $e) {
-            $errorCode = $e->errorInfo[1];
-            // Already exists the server IP
-            if ($errorCode == 1062) {
-                Server::where('ip', $element->get('IP'))->update([
-                    'ip'         => $element->get('IP'),
-                    'port'       => $element->get('Port'),
-                    'servername' => $element->get('ServerName'),
-                    'gamemode'   => $element->get('Gamemode'),
-                    'map'        => $element->get('Map'),
-                    'country'    => $this->getCountry($element->get('IP')),
-                ]);
-
-                event(new UpdateServerStatisticsEvent($element));
-            }
+            event(new UpdateServerStatisticsEvent($element));
         }
     }
 

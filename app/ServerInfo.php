@@ -28,6 +28,6 @@ class ServerInfo extends Model
      */
     public function server()
     {
-        return $this->belongsTo('App\Server');
+        return $this->belongsTo(Server::class);
     }
 }

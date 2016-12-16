@@ -32,7 +32,7 @@ class Server extends Model
      */
     public function statistics()
     {
-        return $this->hasOne('App\ServerStatistic', 'server_id', 'id');
+        return $this->hasOne(ServerStatistic::class, 'server_id', 'id');
     }
 
     /**
@@ -41,6 +41,6 @@ class Server extends Model
      */
     public function info()
     {
-        return $this->hasOne('App\ServerInfo', 'server_id', 'id');
+        return $this->hasOne(ServerInfo::class, 'server_id', 'id');
     }
 }

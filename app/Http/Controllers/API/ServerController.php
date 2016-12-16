@@ -15,11 +15,12 @@ class ServerController extends Controller
      */
     public function listServers()
     {
-        $servers = Server::leftJoin('server_info', 'server_info.server_id', '=', 'servers.id')
+        $servers = Server::join('server_info', 'server_info.server_id', '=', 'servers.id')
             ->select('servers.*',
                 'server_info.currentplayers as currentplayers',
                 'server_info.maxplayers as maxplayers',
-                'server_info.passworded as passworded');
+                'server_info.passworded as passworded')
+            ->groupBy('id');
 
         return Datatables::of($servers)->make(true);
     }

@@ -27,6 +27,6 @@ class ServerStatistic extends Model
      */
     public function server()
     {
-        return $this->belongsTo('App\Server','server_id');
+        return $this->belongsTo(Server::class,'server_id');
     }
 }

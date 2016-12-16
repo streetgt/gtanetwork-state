@@ -34,6 +34,7 @@
                 responsive: true,
                 processing: false,
                 serverSide: true,
+                pageLength: 50,
                 ajax: '{!! route('api.natives') !!}',
                 columns: [
                     { data: 'category', name: 'category', className: "dt-center"},
