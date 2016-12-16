@@ -19,8 +19,6 @@ class UpdateServerInfo implements ShouldQueue
     {
         $item = $event->server;
 
-        $this->updateTodayStats();
-
         $server = Server::where('ip', $item->get('IP'))->first();
 
         if($server == null) {
