@@ -23,6 +23,8 @@ class UpdateServerStatistics implements ShouldQueue
 
         $server = Server::where('ip', $item->get('IP'))->first();
 
+        \Log::debug($server);
+
         if($server == null) {
             event(new UpdateServerEvent($item));
             return;
