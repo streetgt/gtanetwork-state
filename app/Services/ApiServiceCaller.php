@@ -138,4 +138,21 @@ class ApiServiceCaller
         //dd($natives);
     }
 
+    public function getTotalCommits()
+    {
+        $response = $this->client->request('GET', env('REPO_URL'),[
+            'auth' => [env('REPO_USER'), env('REPO_PASSWORD')]
+        ]);
+
+        $data = json_decode($response->getBody()->getContents());
+
+        $commits = 0;
+        foreach ($data as $item)
+        {
+            $commits += $item->total;
+        }
+
+        return $commits;
+    }
+
 }

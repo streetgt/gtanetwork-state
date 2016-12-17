@@ -31,9 +31,7 @@ class UpdateServerInfo implements ShouldQueue
             'maxplayers'     => $item->get('MaxPlayers'),
             'passworded'     => $item->get('Passworded')
         ];
-
-        var_dump($data['passworded']);
-
+        
         if ($server->info()->count()) {
             $server->info()->update($data);
         } else {
