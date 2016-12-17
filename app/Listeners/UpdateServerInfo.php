@@ -32,6 +32,8 @@ class UpdateServerInfo implements ShouldQueue
             'passworded'     => $item->get('Passworded')
         ];
 
+        var_dump($data['passworded']);
+
         if ($server->info()->count()) {
             $server->info()->update($data);
         } else {

@@ -19,6 +19,7 @@ class ServerInfo extends Model
         'server_id',
         'currentplayers',
         'maxplayers',
+        'passworded'
     ];
 
     /**
