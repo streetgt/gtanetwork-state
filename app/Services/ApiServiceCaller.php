@@ -140,9 +140,16 @@ class ApiServiceCaller
 
     public function getTotalCommits()
     {
-        $response = $this->client->request('GET', env('REPO_URL'),[
-            'auth' => [env('REPO_USER'), env('REPO_PASSWORD')]
-        ]);
+        try {
+            $response = $this->client->request('GET', env('REPO_URL'),[
+                'auth' => [env('REPO_USER'), env('REPO_PASSWORD')]
+            ]);
+
+        }
+        catch (ClientException $e)
+        {
+            return 0;
+        }
 
         $data = json_decode($response->getBody()->getContents());
 
