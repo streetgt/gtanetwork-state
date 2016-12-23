@@ -123,7 +123,7 @@ class ListServers extends Command
     {
         $today_stats = Stats::where('date', Carbon::today('Europe/Lisbon'))->first();
 
-        $current_players = ServerInfo::sum('currentplayers');
+        $current_players = (int) ServerInfo::sum('currentplayers');
 
         if ($today_stats == null) {
             Stats::create([
@@ -140,16 +140,16 @@ class ListServers extends Command
 
             switch (Carbon::now('Europe/Lisbon')->hour) {
                 case 0:
-                    $avg[0] < $current_players ? $current_players : $avg[0];
+                    $avg[0] < $current_players ? $avg[0] = $current_players : $avg[0];
                     break;
                 case 6:
-                    $avg[1] < $current_players ? $current_players : $avg[1];
+                    $avg[1] < $current_players ? $avg[1] = $current_players : $avg[1];
                     break;
                 case 12:
-                    $avg[2] < $current_players ? $current_players : $avg[2];
+                    $avg[2] < $current_players ? $avg[2] = $current_players : $avg[2];
                     break;
                 case 18:
-                    $avg[3] < $current_players ? $current_players : $avg[3];
+                    $avg[3] < $current_players ? $avg[3] = $current_players : $avg[3];
                     break;
             }
 
