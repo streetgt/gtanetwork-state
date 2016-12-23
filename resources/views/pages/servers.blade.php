@@ -36,6 +36,7 @@
                 responsive: true,
                 processing: false,
                 serverSide: true,
+                lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
                 pageLength: 20,
                 ajax: '{!! route('api.servers') !!}',
                 columns: [
