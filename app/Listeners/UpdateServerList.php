@@ -82,8 +82,21 @@ class UpdateServerList implements ShouldQueue
     private function getCountry($ip)
     {
         $split = explode(':', $ip);
-        $res = $this->client->request('GET', 'https://ipinfo.io/' . $split[0] . '/country');
-
-        return trim(preg_replace("/\r\n|\r|\n/", ' ', $res->getBody()->getContents()));
+        try {
+            $res = $this->client->request('GET', 'https://ipinfo.io/' . $split[0] . '/country');
+            return trim(preg_replace("/\r\n|\r|\n/", ' ', $res->getBody()->getContents()));
+        }
+        catch (ClientException $e)
+        {
+            try {
+                $res = $this->client->request('GET', 'http://freegeoip.net/json/' . $split[0]);
+                $country = json_decode($res->getBody()->getContents())->country_code;
+                return trim(preg_replace("/\r\n|\r|\n/", ' ', $country));
+            }
+            catch (ClientException $e2)
+            {
+                return 'UNK';
+            }
+        }
     }
 }
