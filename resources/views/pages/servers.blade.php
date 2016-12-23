@@ -36,6 +36,7 @@
                 responsive: true,
                 processing: false,
                 serverSide: true,
+                pageLength: 20,
                 ajax: '{!! route('api.servers') !!}',
                 columns: [
                     { data: 'passworded', name: 'passworded', orderable: false, className: "dt-center",

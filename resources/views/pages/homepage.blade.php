@@ -13,7 +13,7 @@
             </ul>
         </div>
     @endif
-    <p class="lead">Find here information about your GTA Network server!</p>
+    <p class="lead">Find information about your GTA Network server here!</p>
     <form action="{{ route('server.postSearch') }}" method="POST">
         <div class="form-group">
             <input name="ip" id="ip" class="form-control" type="text" placeholder="127.0.0.1:4499">
