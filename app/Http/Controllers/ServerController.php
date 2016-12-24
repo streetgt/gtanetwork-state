@@ -43,7 +43,7 @@ class ServerController extends Controller
         });
 
         //TEXT
-        $img->text($server->servername, 35, 8, function ($font) use ($font_url, $color1) {
+        $img->text(str_limit($server->servername,40), 35, 8, function ($font) use ($font_url, $color1) {
             $font->file($font_url);
             $font->size(13);
             $font->color('#' . $color1);
