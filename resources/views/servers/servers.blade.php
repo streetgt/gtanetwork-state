@@ -62,7 +62,7 @@
                     },
                     { data: 'servername', name: 'servername',
                         render: function (data, type, row) {
-                            return '<a href="{!! Request::root() !!}/server/search/' + row.ip + '">' + escapeHtml(row.servername) + '</a>';
+                            return '<a href="{!! Request::root() !!}/servers/search/' + row.ip + '">' + escapeHtml(row.servername) + '</a>';
                         }
                     },
                     { data: 'currentplayers', name: 'currentplayers', className: "dt-center"},
