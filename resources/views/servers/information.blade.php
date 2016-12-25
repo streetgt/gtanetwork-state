@@ -6,6 +6,11 @@
     <div class="jumbotron">
         <ol class="breadcrumb">
             <li><a href="{{ route('homepage') }}">Home</a></li>
+            @if($server->isVerified() && URL::previous() == route('servers.verified'))
+                <li><a href="{{ route('servers.verified') }}">Servers - Verified</a></li>
+            @elseif( ! $server->isVerified() && URL::previous() == route('servers.internet'))
+                <li><a href="{{ route('servers.internet') }}">Servers - Internet</a></li>
+            @endif
             <li class="active">{{ $server->servername }}</li>
         </ol>
         <!-- Nav tabs -->
