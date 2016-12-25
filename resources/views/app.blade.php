@@ -40,7 +40,7 @@
 @if(env('APP_ENV') == 'local')
     <script src="{{ asset('js/app.js') }}"></script>
 @else
-    <script src="{{ asset('js/min/app-min.js') }}"></script>
+    <script src="{{ asset('js/min/app.js') }}"></script>
 @endif
 @yield('javascript')
 <script>
