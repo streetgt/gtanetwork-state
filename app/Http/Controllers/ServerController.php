@@ -43,7 +43,7 @@ class ServerController extends Controller
         });
 
         //TEXT
-        $img->text(str_limit($server->servername,40), 35, 8, function ($font) use ($font_url, $color1) {
+        $img->text(str_limit($server->servername, 40), 35, 8, function ($font) use ($font_url, $color1) {
             $font->file($font_url);
             $font->size(13);
             $font->color('#' . $color1);
@@ -128,7 +128,7 @@ class ServerController extends Controller
             return redirect()->route('homepage')->withErrors('The server you are trying to find does not exist.');
         }
 
-        return redirect()->route('server.getSearch', $request->input('ip'));
+        return redirect()->route('servers.getSearch', $request->input('ip'));
     }
 
     /**
@@ -149,6 +149,30 @@ class ServerController extends Controller
         $playersOnline = $server->info;
 
         return view('servers.information', compact('server', 'statistics', 'playersOnline'));
+    }
+
+    /**
+     * Display the Internet Servers Page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pageInternetServers()
+    {
+        $type = "internet";
+
+        return view('servers.servers', compact('type'));
+    }
+
+    /**
+     * Display the Verified Servers page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pageVerifiedServers()
+    {
+        $type = "verified";
+
+        return view('servers.servers', compact('type'));
     }
 
     /**

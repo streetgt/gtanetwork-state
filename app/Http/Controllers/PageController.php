@@ -53,16 +53,6 @@ class PageController extends Controller
     }
 
     /**
-     * Display the FAQ page
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function servers()
-    {
-        return view('pages.servers');
-    }
-
-    /**
      * Display the Forum Stats page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

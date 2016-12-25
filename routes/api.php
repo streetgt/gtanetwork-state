@@ -12,6 +12,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/servers', 'API\ServerController@listServers')->name('api.servers');
 Route::get('/natives', 'API\ServerController@listNatives')->name('api.natives');
+Route::get('/servers/internet', 'API\ServerController@listInternetServers')->name('api.servers.internet');
+Route::get('/servers/verified', 'API\ServerController@listVerifiedServers')->name('api.servers.verified');

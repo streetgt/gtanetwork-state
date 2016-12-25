@@ -7,9 +7,10 @@
         <ol class="breadcrumb">
             <li><a href="{{ route('homepage') }}">Home</a></li>
             <li class="active">Servers</li>
+            <li class="active">{{ $type == 'verified' ? 'Verified' : 'Internet'}}</li>
         </ol>
         <div class="faq">
-            <p class="lead network"><b>Servers</b></p>
+            <p class="lead network"><b>Servers - {{ $type == 'verified' ? 'Verified' : 'Internet'}}</b></p>
             <div class="table-responsive">
                 <table class="table" id="players-table">
                     <thead>
@@ -24,6 +25,9 @@
                     </tr>
                     </thead>
                 </table>
+                @if($type == 'verified')
+                    <small class="pull-left" style="padding-top: 20px;">Looking to verify your server? Take a look at <a href="{{route('faq')}}">FAQ</a>.</small>
+                @endif
             </div>
         </div>
     </div>
@@ -38,7 +42,13 @@
                 serverSide: true,
                 lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
                 pageLength: 20,
-                ajax: '{!! route('api.servers') !!}',
+                @if($type == "verified")
+                order: [[ 3, "desc" ]],
+                ajax: '{!! route('api.servers.verified') !!}',
+                @else
+                ajax: '{!! route('api.servers.internet') !!}',
+                @endif
+
                 columns: [
                     { data: 'passworded', name: 'passworded', orderable: false, className: "dt-center",
                         render: function (passworded) {

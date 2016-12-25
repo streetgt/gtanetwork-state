@@ -7,7 +7,12 @@
     </div>
     <ul class="nav nav-pills pull-right">
         <li role="presentation" class="{{ isActiveRoute('homepage') }}"><a href="{{ route('homepage') }}">Home</a></li>
-        <li role="presentation" class="{{ isActiveRoute('servers') }}"><a href="{{ route('servers') }}">Servers</a></li>
+        <li class="dropdown {{ areActiveRoutes(['servers.verified','servers.internet']) }}"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Servers<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="{{ isActiveRoute('servers.verified') }}"><a href="{{ route('servers.verified') }}">Verified</a></li>
+                <li class="{{ isActiveRoute('servers.internet') }}"><a href="{{ route('servers.internet') }}">Internet</a></li>
+            </ul>
+        </li>
         <li role="presentation" class="{{ isActiveRoute('stats') }}"><a href="{{ route('stats') }}">Stats</a></li>
         {{--<li role="presentation" class="{{ areActiveRoutes(['map.get','map.post']) }}"><a href="{{ route('map.get') }}">Map Converter</a></li>--}}
         <li class="dropdown {{ areActiveRoutes(['util.map.get','util.map.post']) }}"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utils<span class="caret"></span></a>

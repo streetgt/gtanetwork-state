@@ -14,7 +14,6 @@
 Route::get('/', 'PageController@index')->name('homepage');
 Route::get('/faq', 'PageController@faq')->name('faq');
 Route::get('/stats', 'PageController@stats')->name('stats');
-Route::get('/servers', 'PageController@servers')->name('servers');
 
 /** Utils Routes */
 Route::group(['prefix' => 'util', 'as' => 'util.'], function () {
@@ -24,7 +23,9 @@ Route::group(['prefix' => 'util', 'as' => 'util.'], function () {
     Route::get('/forum-stats', 'PageController@forumStats')->name('forum.stats');
 });
 
-Route::group(['prefix' => 'server', 'as' => 'server.'], function () {
+Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
+    Route::get('/verified', 'ServerController@pageVerifiedServers')->name('verified');
+    Route::get('/internet', 'ServerController@pageInternetServers')->name('internet');
     Route::post('/search', 'ServerController@postSearch')->name('postSearch');
     Route::get('/search/{server_ip}', 'ServerController@getSearch')->name('getSearch');
     Route::get('{ip}/information', 'ServerController@information')->name('information');

@@ -33,6 +33,30 @@
                 <hr>
 
                 <li>
+                    <b>Verified Servers</b>
+                    <ul>
+                        <li>In order for your server to be listed on the verified server list, you need to have the following requirements.</li>
+                            <ul>
+                                <li>Dedicated Server hosting.
+                                    <ul><li>Screenshot needed.</li></ul>
+                                </li>
+                                <li>Advertisement on the forums.
+                                    <ul><li>Advertisement link needed.</li></ul></li>
+                                <li>Good looking community.
+                                    <ul><li>Community link needed.</li></ul>
+                                </li>
+                                <li>Password Hashing.
+                                    <ul><li>Provide server address, so we can verify that.</li></ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Send your application via private message on <a href="https://forum.gtanet.work/index.php?members/streetgt.81/">GTA Network Forum.</a></li>
+                    </ul>
+                </li>
+
+                <hr>
+
+                <li>
                     <b>Looking to send me a donation?</b>
                     <ul>
                         <li>Currently I support the website from my own pocket, hosted on DigitalOcean for $5/month, If you really enjoy the platform and want to contribute and help me run the platform, you can donate <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tiagocardosoweb%40gmail%2ecom&lc=PT&item_name=GTA%20NETWORK%20%2d%20SERVER%20STATE&item_number=gtanetworkserverstate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">here</a>.</li>

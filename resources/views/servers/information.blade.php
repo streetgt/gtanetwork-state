@@ -50,8 +50,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body text-center">
                         <div class="banner">
-                            <img src="{{ route('server.banner',$server->ip) }}" alt="">
-                            <textarea class="code" rows="3" cols="50" readonly>[url={{ route('server.information',$server->ip) }}][img]{{ route('server.banner',$server->ip) }}[/img][/url]</textarea>
+                            <img src="{{ route('servers.banner',$server->ip) }}" alt="">
+                            <textarea class="code" rows="3" cols="50" readonly>[url={{ route('servers.information',$server->ip) }}][img]{{ route('servers.banner',$server->ip) }}[/img][/url]</textarea>
                         </div>
                     </div>
                 </div>
