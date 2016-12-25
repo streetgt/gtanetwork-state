@@ -9,7 +9,9 @@
     "datatables.net": "^1.10.12",
     "datatables.net-dt": "^1.10.12",
     "gulp": "^3.9.1",
+    "gulp-minify": "0.0.14",
     "gulp-sourcemaps": "2.0.0",
+    "gulp-uglifycss": "^1.0.6",
     "jquery": "^3.1.1",
     "laravel-elixir": "^6.0.0-9"
   }

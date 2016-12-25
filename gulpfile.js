@@ -1,4 +1,6 @@
 var elixir = require('laravel-elixir');
+var uglifycss = require('gulp-uglifycss');
+var minify = require('gulp-minify');
 
 /*
  |--------------------------------------------------------------------------
@@ -18,8 +20,17 @@ elixir(function(mix) {
         '../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
         '../../../node_modules/datatables.net/js/jquery.dataTables.js',
     ], 'public/js/app.js');
-    // mix.styles([
-    //     '../../../public/css/app.css',
-    //     '../../../public/css/flags.css'
-    // ], 'public/css/app.css');
+});
+
+gulp.task('compress', function () {
+    gulp.src('public/css/app.css')
+        .pipe(uglifycss({
+            "maxLineLen": 80,
+            "uglyComments": true
+        }))
+        .pipe(gulp.dest('public/css/min'))
+
+    gulp.src('public/js/app.js')
+        .pipe(minify())
+        .pipe(gulp.dest('public/js/min'))
 });

@@ -11,7 +11,11 @@
     <title>GTA Network Server State - @yield('title')</title>
 
     <!-- Application CSS -->
+    @if(env('APP_ENV') == 'local')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @else
+    <link href="{{ asset('css/min/app.css') }}" rel="stylesheet">
+    @endif
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -33,7 +37,11 @@
 </div>
 
 <!-- Javascript! -->
-<script src="{{ asset('js/app.js') }}"></script>
+@if(env('APP_ENV') == 'local')
+    <script src="{{ asset('js/app.js') }}"></script>
+@else
+    <script src="{{ asset('js/min/app-min.js') }}"></script>
+@endif
 @yield('javascript')
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
