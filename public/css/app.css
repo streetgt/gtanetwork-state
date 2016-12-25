@@ -9278,6 +9278,8 @@ body {
   width: 100px;
   margin-top: 20px;
   margin-right: 25px; }
+  .logo span {
+    margin-top: 5px; }
 
 .banner img {
   padding-bottom: 20px; }

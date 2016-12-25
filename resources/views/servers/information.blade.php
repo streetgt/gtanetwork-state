@@ -21,9 +21,15 @@
                     <div class="panel-body">
                         <div class="logo pull-right">
                             <img class="img-thumbnail" src="{{ asset('images/logo.png') }}" alt="GTA Network">
+                            @if($server->isVerified())
+                                <span class="label label-pill label-success center-block"><i class="fa fa-check" aria-hidden="true"></i> Verified</span>
+                            @endif
                         </div>
                         <h3>Server Information</h3>
                         <b>Name</b>: {{ $server->servername }}<br>
+                        @if($server->isVerified() != null)
+                           <b>Website:</b><a href="{{ $server->getWebsite() }}"> {{ $server->getWebsite() }}</a><br>
+                        @endif
                         <b>IP</b>: <a src="gtan://{{ $server->ip }}">{{ $server->ip }} <i class="fa fa-sign-in" aria-hidden="true"></i></a><br>
                         <b>Gamemode</b>: {{ $server->gamemode }}<br>
                         <b>Country</b>: <img src="{{ asset('images/flags/18x12/' . strtolower($server->country)) }}.gif">

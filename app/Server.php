@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Server extends Model
@@ -42,5 +43,29 @@ class Server extends Model
     public function info()
     {
         return $this->hasOne(ServerInfo::class, 'server_id', 'id');
+    }
+
+    /**
+     * Check if a server is verified
+     *
+     * @return bool
+     */
+    public function isVerified()
+    {
+        $count = DB::table('servers_verified')->where('ip', $this->ip)->count();
+
+        return ! $count == 0;
+    }
+
+    /**
+     * Check if a server is verified
+     *
+     * @return bool
+     */
+    public function getWebsite()
+    {
+        $website = DB::table('servers_verified')->where('ip', $this->ip)->pluck('website')->first();
+
+        return $website;
     }
 }
