@@ -21,6 +21,9 @@
                         <th>Current Players</th>
                         <th>Max Players</th>
                         <th>IP</th>
+                        @if($type == 'verified')
+                            <th>Website</th>
+                        @endif
                         <th>Join</th>
                     </tr>
                     </thead>
@@ -43,12 +46,11 @@
                 lengthMenu: [[10, 20, 50, 100], [10, 20, 50, 100]],
                 pageLength: 20,
                 @if($type == "verified")
-                order: [[ 3, "desc" ]],
                 ajax: '{!! route('api.servers.verified') !!}',
                 @else
                 ajax: '{!! route('api.servers.internet') !!}',
                 @endif
-
+                order: [[ 3, "desc" ]],
                 columns: [
                     { data: 'passworded', name: 'passworded', orderable: false, className: "dt-center",
                         render: function (passworded) {
@@ -68,6 +70,13 @@
                     { data: 'currentplayers', name: 'currentplayers', className: "dt-center"},
                     { data: 'maxplayers', name: 'maxplayers', className: "dt-center" },
                     { data: 'ip', name: 'ip' },
+                    @if($type == 'verified')
+                    { data: 'website', orderable: false, className: "dt-center",
+                        render: function (data, type, row) {
+                            return '<a href="'+ row.website +'"><i class="fa fa-globe" aria-hidden="true"></i></a>';
+                        }
+                    },
+                    @endif
                     { data: 'ip', orderable: false, className: "dt-center",
                         render: function (ip) {
                             return '<a href="gtan://'+ip+'"><i class="fa fa-sign-in" aria-hidden="true"></i></a>';

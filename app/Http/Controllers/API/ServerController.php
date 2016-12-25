@@ -35,11 +35,12 @@ class ServerController extends Controller
     public function listVerifiedServers()
     {
         $servers = Server::join('server_info', 'server_info.server_id', '=', 'servers.id')
+            ->join('servers_verified', 'servers_verified.ip','=','servers.ip')
             ->select('servers.*',
                 'server_info.currentplayers as currentplayers',
                 'server_info.maxplayers as maxplayers',
-                'server_info.passworded as passworded')
-            ->whereIn('ip', DB::table('servers_verified')->select('ip'))
+                'server_info.passworded as passworded',
+                'servers_verified.website as website')
             ->groupBy('id');
 
         return Datatables::of($servers)->make(true);
