@@ -64,7 +64,7 @@
                     },
                     { data: 'servername', name: 'servername',
                         render: function (data, type, row) {
-                            return '<a href="{!! Request::root() !!}/servers/search/' + row.ip + '">' + escapeHtml(row.servername) + '</a>';
+                            return '<a href="{!! Request::root() !!}/servers/search/' + row.ip + '">' + escapeHtml(limitStr(row.servername,50)) + '</a>';
                         }
                     },
                     { data: 'currentplayers', name: 'currentplayers', className: "dt-center"},
@@ -95,6 +95,15 @@
                 "'": '&#039;'
             };
             return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        function limitStr(string,length)
+        {
+            var trimmedString = string.length > length ?
+            string.substring(0, length) + "..." :
+                    string;
+
+            return trimmedString;
         }
     </script>
 @endsection
