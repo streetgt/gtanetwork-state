@@ -1,6 +1,7 @@
 var elixir = require('laravel-elixir');
-var uglifycss = require('gulp-uglifycss');
+var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
+var rename = require('gulp-rename');
 
 /*
  |--------------------------------------------------------------------------
@@ -24,13 +25,12 @@ elixir(function(mix) {
 
 gulp.task('compress', function () {
     gulp.src('public/css/app.css')
-        .pipe(uglifycss({
-            "maxLineLen": 0,
-            "uglyComments": true
-        }))
-        .pipe(gulp.dest('public/css/min'))
+        .pipe(rename("app.min.css"))
+        .pipe(cleanCSS())
+        .pipe(gulp.dest('public/css'))
 
     gulp.src('public/js/app.js')
+        .pipe(rename("app.min.js"))
         .pipe(uglify())
-        .pipe(gulp.dest('public/js/min'))
+        .pipe(gulp.dest('public/js'))
 });
