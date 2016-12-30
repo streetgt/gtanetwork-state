@@ -40,8 +40,8 @@
                 columns: [
                     { data: 'social_club', name: 'social_club', className: "dt-center"},
                     { data: 'reason', name: 'reason', className: "dt-center" },
-                    { data: 'reason', name: 'reason', className: "dt-center"  },
                     { data: 'banned_by', name: 'banned_by', className: "dt-center" },
+                    { data: 'expires', name: 'expires', className: "dt-center"  },
                 ]
             });
         });
