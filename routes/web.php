@@ -14,6 +14,7 @@
 Route::get('/', 'PageController@index')->name('homepage');
 Route::get('/faq', 'PageController@faq')->name('faq');
 Route::get('/stats', 'PageController@stats')->name('stats');
+Route::get('/bans', 'PageController@bans')->name('bans');
 
 /** Utils Routes */
 Route::group(['prefix' => 'util', 'as' => 'util.'], function () {

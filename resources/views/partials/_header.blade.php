@@ -14,7 +14,7 @@
             </ul>
         </li>
         <li role="presentation" class="{{ isActiveRoute('stats') }}"><a href="{{ route('stats') }}">Stats</a></li>
-        {{--<li role="presentation" class="{{ areActiveRoutes(['map.get','map.post']) }}"><a href="{{ route('map.get') }}">Map Converter</a></li>--}}
+        <li role="presentation" class="{{ isActiveRoute('bans') }}"><a href="{{ route('bans') }}">Bans</a></li>
         <li class="dropdown {{ areActiveRoutes(['util.map.get','util.map.post']) }}"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utils<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="{{ isActiveRoute('util.natives') }}"><a href="{{ route('util.natives') }}">Natives</a></li>

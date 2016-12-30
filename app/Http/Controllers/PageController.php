@@ -71,4 +71,14 @@ class PageController extends Controller
     {
         return view('pages.natives');
     }
+
+    /**
+     * Display the Bans page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function bans()
+    {
+        return view('pages.bans');
+    }
 }
