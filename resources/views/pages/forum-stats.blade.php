@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title','Forum Stats')
+@section('title','Utils - Forum Stats')
 
 @section('content')
     <div class="jumbotron">

@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title','Servers')
+@section('title','Servers - ' . $type == 'verified' ? 'Verified' : 'Internet')
 
 @section('content')
     <div class="jumbotron">

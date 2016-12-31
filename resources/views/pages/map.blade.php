@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title','Map Converter')
+@section('title','Utils - Map Converter')
 
 @section('content')
     <div class="jumbotron">

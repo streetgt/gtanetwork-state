@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title','Servers')
+@section('title','Bans')
 
 @section('content')
     <div class="jumbotron">
