@@ -7,12 +7,13 @@
     <meta name="description" content="GTA Network server monitoring, stats, banner and live signatures!">
     <meta name="keywords" content="gtanetwork, game state, server info, multiplayer, server, information">
     <meta property="og:site_name" content="GTA Network Server State">
+    <meta property="og:image" content="{{ asset('logo.og.png') }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="@yield('title')">
-    <meta property="og:image" content="{{ asset('images/logo.png') }}" />
     <meta property="og:url" content="{{ Request::url() }}">
+    <link rel="canonical" href="{{ Request::url() }}">
+    <link rel="apple-touch-icon" href="{{ asset('logo.og.png') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/x-icon">
-
     <title>GTA Network Server State - @yield('title')</title>
 
     <!-- Application CSS -->

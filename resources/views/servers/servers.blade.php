@@ -9,7 +9,7 @@
             <li class="active">Servers</li>
             <li class="active">{{ $type == 'verified' ? 'Verified' : 'Internet'}}</li>
         </ol>
-        <div class="faq">
+        <div class="servers">
             <p class="lead network"><b>Servers - {{ $type == 'verified' ? 'Verified' : 'Internet'}}</b></p>
             <div class="table-responsive">
                 <table class="table" id="players-table">

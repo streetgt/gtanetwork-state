@@ -8,7 +8,7 @@
             <li><a href="{{ route('homepage') }}">Home</a></li>
             <li class="active">Bans</li>
         </ol>
-        <div class="faq">
+        <div class="bans">
             <p class="lead network"><b>Bans - Wall of shame</b></p>
             <div class="table-responsive">
                 <table class="table" id="players-table">
