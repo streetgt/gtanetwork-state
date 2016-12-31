@@ -3,6 +3,7 @@
         <h1 class="text-muted">
             <a href="{{ route('homepage') }}">GTA <span>NETWORK</span> <i class="fa fa-globe"></i></a>
         </h1>
+        <h4>Unofficial Platform</h4>
         <span class="label label-danger">BETA</span>
     </div>
     <ul class="nav nav-pills pull-right">
