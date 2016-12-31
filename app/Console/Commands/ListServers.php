@@ -112,7 +112,7 @@ class ListServers extends Command
      */
     private function deleteOldServers()
     {
-        $servers = DB::table('server_info')->where('updated_at', '<=', Carbon::now()->subHours(2))->pluck('server_id')->toArray();
+        $servers = DB::table('server_info')->where('updated_at', '<=', Carbon::now()->subMinute(30))->pluck('server_id')->toArray();
         DB::table('servers')->whereIn('id', array_values($servers))->delete();
     }
 
