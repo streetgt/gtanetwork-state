@@ -14,7 +14,7 @@ class AddFqdnTableServers extends Migration
     public function up()
     {
         Schema::table('servers', function (Blueprint $table) {
-            $table->string('fqdn')->after('ip');
+            $table->string('fqdn')->after('ip')->nullable();
         });
     }
 
