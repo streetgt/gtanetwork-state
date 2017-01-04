@@ -49,6 +49,7 @@ class UpdateServerList implements ShouldQueue
         if($server == null) {
             Server::create([
                 'ip'         => $element->get('IP'),
+                'fqdn'         => $element->get('fqdn'),
                 'port'       => $element->get('Port'),
                 'servername' => $element->get('ServerName'),
                 'gamemode'   => $element->get('Gamemode'),
@@ -62,6 +63,7 @@ class UpdateServerList implements ShouldQueue
         } else {
             $server->update([
                 'ip'         => $element->get('IP'),
+                'fqdn'         => $element->get('fqdn'),
                 'port'       => $element->get('Port'),
                 'servername' => $element->get('ServerName'),
                 'gamemode'   => $element->get('Gamemode'),
