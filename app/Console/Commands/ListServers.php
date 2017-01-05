@@ -67,7 +67,7 @@ class ListServers extends Command
         foreach ($servers as $server) {
             $collection = collect($server);
 
-            if(strpos($collection->Gamemode, 'UGBASE') !== false) return;
+            if(strpos($collection->get('Gamemode'), 'UGBASE') !== false) return;
 
             switch ($option) {
                 case 0:
