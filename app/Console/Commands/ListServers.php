@@ -67,10 +67,9 @@ class ListServers extends Command
         foreach ($servers as $server) {
             $collection = collect($server);
 
-            if(strpos($collection->get('Gamemode'), 'UGBASE') !== false) return;
-
             switch ($option) {
                 case 0:
+                    $this->updateVerifiedServes();
                     event(new UpdateServerEvent($collection));
                     break;
                 case 1:
@@ -162,6 +161,31 @@ class ListServers extends Command
                 'avg' => json_encode($avg),
             ]);
 
+        }
+    }
+
+    /**
+     * Updates the verified servers list
+     */
+    private function updateVerifiedServes()
+    {
+        $servers = $this->api->getVerifiedServersList();
+
+        if (empty($servers)) {
+            return;
+        }
+
+        foreach ($servers as $server)
+        {
+            $result = DB::table('servers_verified')->where('ip', $server)->first();
+
+            if($result == null)
+            {
+                DB::table('servers_verified')->insert([
+                    'ip' => $server,
+                    'website' => null
+                ]);
+            }
         }
     }
 }

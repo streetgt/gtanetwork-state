@@ -17,6 +17,7 @@ class Server extends Model
      */
     protected $fillable = [
         'ip',
+        'fqdn',
         'servername',
         'port',
         'currentplayers',
@@ -65,7 +66,7 @@ class Server extends Model
     public function getWebsite()
     {
         $website = DB::table('servers_verified')->where('ip', $this->ip)->pluck('website')->first();
-
+        
         return $website;
     }
 }

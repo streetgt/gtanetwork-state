@@ -18,7 +18,12 @@ class ApiServiceCaller
     /**
      * @var string
      */
-    private $uri = 'https://master.gtanet.work/apiservers';
+    private $uriServerList = 'https://master.gtanet.work/apiservers';
+
+    /**
+     * @var string
+     */
+    private $uriVerifiedServerList = 'https://master.gtanet.work/verified';
 
     /**
      * ApiServiceCaller constructor.
@@ -44,7 +49,25 @@ class ApiServiceCaller
 //        $data = json_decode($response);
 
         try {
-            $response = $this->client->request('GET', $this->uri);
+            $response = $this->client->request('GET', $this->uriServerList);
+        }
+        catch (ClientException $e)
+        {
+            return [];
+        }
+
+        $data = json_decode($response->getBody()->getContents());
+
+        return $data->list;
+    }
+
+    /**
+     * @return array
+     */
+    public function getVerifiedServersList()
+    {
+        try {
+            $response = $this->client->request('GET', $this->uriVerifiedServerList);
         }
         catch (ClientException $e)
         {

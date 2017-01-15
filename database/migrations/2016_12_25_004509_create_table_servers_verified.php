@@ -15,8 +15,8 @@ class CreateTableServersVerified extends Migration
     {
         Schema::create('servers_verified', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('ip')->unique();
-            $table->string('website');
+            $table->string('fqdn')->unique();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

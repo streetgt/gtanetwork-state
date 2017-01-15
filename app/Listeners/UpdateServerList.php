@@ -46,10 +46,14 @@ class UpdateServerList implements ShouldQueue
 
         $server = Server::where('ip', $element->get('IP'))->first();
 
-        if($server == null) {
+        if(empty($element->get('fqdn'))) {
+            $element->put('fqdn', null);
+        }
+
+        if ($server == null) {
             Server::create([
                 'ip'         => $element->get('IP'),
-                'fqdn'         => $element->get('fqdn'),
+                'fqdn'       => $element->get('fqdn'),
                 'port'       => $element->get('Port'),
                 'servername' => $element->get('ServerName'),
                 'gamemode'   => $element->get('Gamemode'),
@@ -63,7 +67,7 @@ class UpdateServerList implements ShouldQueue
         } else {
             $server->update([
                 'ip'         => $element->get('IP'),
-                'fqdn'         => $element->get('fqdn'),
+                'fqdn'       => $element->get('fqdn'),
                 'port'       => $element->get('Port'),
                 'servername' => $element->get('ServerName'),
                 'gamemode'   => $element->get('Gamemode'),
@@ -87,10 +91,9 @@ class UpdateServerList implements ShouldQueue
         try {
             $res = $this->client->request('GET', 'http://freegeoip.net/json/' . $split[0]);
             $country = json_decode($res->getBody()->getContents())->country_code;
+
             return trim(preg_replace("/\r\n|\r|\n/", ' ', $country));
-        }
-        catch (ClientException $e2)
-        {
+        } catch (ClientException $e2) {
             return 'FR';
         }
     }

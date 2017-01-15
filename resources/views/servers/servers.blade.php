@@ -28,9 +28,9 @@
                     </tr>
                     </thead>
                 </table>
-                @if($type == 'verified')
-                    <small class="pull-left" style="padding-top: 20px;">Looking to verify your server? Take a look at <a href="{{route('faq')}}">FAQ</a>.</small>
-                @endif
+                {{--@if($type == 'verified')--}}
+                    {{--<small class="pull-left" style="padding-top: 20px;">Looking to verify your server? Take a look at <a href="{{route('faq')}}">FAQ</a>.</small>--}}
+                {{--@endif--}}
             </div>
         </div>
     </div>
@@ -73,7 +73,11 @@
                     @if($type == 'verified')
                     { data: 'website', orderable: false, className: "dt-center",
                         render: function (data, type, row) {
-                            return '<a href="'+ row.website +'"><i class="fa fa-globe" aria-hidden="true"></i></a>';
+                            if(row.website != null) {
+                                return '<a href="'+ row.website +'"><i class="fa fa-globe" aria-hidden="true"></i></a>';
+                            } else {
+                                return '-';
+                            }
                         }
                     },
                     @endif

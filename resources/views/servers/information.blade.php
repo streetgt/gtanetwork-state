@@ -32,7 +32,7 @@
                         </div>
                         <h3>Server Information</h3>
                         <b>Name</b>: {{ $server->servername }}<br>
-                        @if($server->isVerified() != null)
+                        @if($server->isVerified() != null && $server->getWebsite() != null)
                            <b>Website:</b><a href="{{ $server->getWebsite() }}"> {{ $server->getWebsite() }}</a><br>
                         @endif
                         <b>IP</b>: <a src="gtan://{{ $server->ip }}">{{ $server->ip }} <i class="fa fa-sign-in" aria-hidden="true"></i></a><br>
