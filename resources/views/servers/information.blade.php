@@ -11,7 +11,7 @@
             @elseif( ! $server->isVerified() && URL::previous() == route('servers.internet'))
                 <li><a href="{{ route('servers.internet') }}">Servers - Internet</a></li>
             @endif
-            <li class="active">{{ str_limit($server->servername,85,'...') }}</li>
+            <li class="active">{{ str_limit($server->getServerNameFormatted(),85,'...') }}</li>
         </ol>
         <!-- Nav tabs -->
         <ul id="myTabs" class="nav nav-tabs" role="tablist">
@@ -31,7 +31,7 @@
                             @endif
                         </div>
                         <h3>Server Information</h3>
-                        <b>Name</b>: {{ $server->servername }}<br>
+                        <b>Name</b>: {{ $server->getServerNameFormatted() }}<br>
                         @if($server->isVerified() != null && $server->getWebsite() != null)
                            <b>Website:</b><a href="{{ $server->getWebsite() }}"> {{ $server->getWebsite() }}</a><br>
                         @endif

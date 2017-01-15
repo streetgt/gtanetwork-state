@@ -66,7 +66,15 @@ class Server extends Model
     public function getWebsite()
     {
         $website = DB::table('servers_verified')->where('ip', $this->ip)->pluck('website')->first();
-        
+
         return $website;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getServerNameFormatted()
+    {
+        return preg_replace('/((^|)(\~\w~|\¦|÷|∑))/', "", $this->servername);
     }
 }
