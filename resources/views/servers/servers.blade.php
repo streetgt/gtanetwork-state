@@ -20,11 +20,12 @@
                         <th>Name</th>
                         <th>Current Players</th>
                         <th>Max Players</th>
+                        <th>Gamemode</th>
                         <th>IP</th>
                         @if($type == 'verified')
                             <th>Website</th>
                         @endif
-                        <th>Join</th>
+                        {{--<th>Join</th>--}}
                     </tr>
                     </thead>
                 </table>
@@ -69,7 +70,8 @@
                     },
                     { data: 'currentplayers', name: 'currentplayers', className: "dt-center"},
                     { data: 'maxplayers', name: 'maxplayers', className: "dt-center" },
-                    { data: 'ip', name: 'ip' },
+                    { data: 'gamemode', name: 'gamemode', orderable: false, className: "dt-center" },
+                    { data: 'ip', name: 'ip',  orderable: false, className: "dt-center" },
                     @if($type == 'verified')
                     { data: 'website', orderable: false, className: "dt-center",
                         render: function (data, type, row) {
@@ -81,11 +83,11 @@
                         }
                     },
                     @endif
-                    { data: 'ip', orderable: false, className: "dt-center",
-                        render: function (ip) {
-                            return '<a href="gtan://'+ip+'"><i class="fa fa-sign-in" aria-hidden="true"></i></a>';
-                        }
-                    },
+//                    { data: 'ip', orderable: false, className: "dt-center",
+//                        render: function (ip) {
+//                            return '<a href="gtan://'+ip+'"><i class="fa fa-sign-in" aria-hidden="true"></i></a>';
+//                        }
+//                    },
                 ]
             });
         });
