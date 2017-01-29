@@ -44,7 +44,8 @@
         </div>
 
         <div class="container text-center" style="margin-top: 150px">
-            <h1>Be right back</h1>
+            <h1>We will be right back!</h1>
+            <h3>Maintenance mode...</h3>
         </div>
 
     </div>

@@ -44,11 +44,11 @@ class UpdateServerList implements ShouldQueue
     {
         $element = $event->server;
 
-        $server = Server::where('ip', $element->get('IP'))->first();
-
-        if(empty($element->get('fqdn'))) {
+        if (empty($element->get('fqdn'))) {
             $element->put('fqdn', null);
         }
+
+        $server = Server::where('ip', $element->get('IP'))->first();
 
         if ($server == null) {
             Server::create([

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Stats;
 use App\ServerInfo;
-use Illuminate\Http\Request;
 use App\Http\Requests;
 
 class PageController extends Controller
