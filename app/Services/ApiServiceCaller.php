@@ -18,7 +18,7 @@ class ApiServiceCaller
     /**
      * @var string
      */
-    private $uriServerList = 'https://master.gtanet.work/apiservers';
+    private $uriServerList = 'https://master.gtanet.work/apiserverss';
 
     /**
      * @var string
@@ -52,6 +52,10 @@ class ApiServiceCaller
             $response = $this->client->request('GET', $this->uriServerList);
         }
         catch (ClientException $e)
+        {
+            return [];
+        }
+        catch (Exception $e)
         {
             return [];
         }
