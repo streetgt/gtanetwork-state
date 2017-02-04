@@ -62,7 +62,7 @@
                     <div class="panel-body text-center">
                         <div class="banner">
                             <img src="{{ route('servers.banner',$server->ip) }}" alt="">
-                            <textarea class="code" rows="3" cols="50" readonly>[url={{ route('servers.information',$server->ip) }}][img]{{ route('servers.banner',$server->ip) }}[/img][/url]</textarea>
+                            <textarea class="code" rows="3" cols="50" readonly>[url={{ route('servers.banner',$server->ip) }}][img]{{ route('servers.banner',$server->ip) }}[/img][/url]</textarea>
                         </div>
                     </div>
                 </div>

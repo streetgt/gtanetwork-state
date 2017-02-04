@@ -11,7 +11,7 @@
         <div class="faq">
             <p class="lead network"><b>Current Stats</b></p>
             <ul>
-                <li><b>Most Players Online Record</b>: {{ $players['most_players_online_record'] }}</li>
+                <li><b>Most Players Online Record</b>: {{ $players['most_players_online_record'][0] }} - <i><small>{{ $players['most_players_online_record'][1]->diffForHumans() }}</small></i></li>
                 <hr>
                 <li><b>Current Players</b>: {{ $players['today_current'] }}</li>
                 <li><b>Servers Online</b>: {{ $players['total_servers'] }}</li>

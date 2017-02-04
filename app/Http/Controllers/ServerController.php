@@ -10,12 +10,16 @@ use Response;
 
 class ServerController extends Controller
 {
-
-    public function index()
-    {
-        return view('welcome');
-    }
-
+    /**
+     * Generates a banner give a IP
+     *
+     * @param $ip
+     * @param string $color1
+     * @param string $color2
+     * @param string $color3
+     * @param string $color4
+     * @return \Illuminate\Http\Response
+     */
     public function banner($ip, $color1 = 'FFFFFF', $color2 = 'FFFFFF', $color3 = '000000', $color4 = 'FFFFFF')
     {
         $server = Server::where('ip', $ip)->first();

@@ -29,7 +29,6 @@ Route::group(['prefix' => 'servers', 'as' => 'servers.'], function () {
     Route::get('/internet', 'ServerController@pageInternetServers')->name('internet');
     Route::post('/search', 'ServerController@postSearch')->name('postSearch');
     Route::get('/search/{server_ip}', 'ServerController@getSearch')->name('getSearch');
-    Route::get('{ip}/information', 'ServerController@information')->name('information');
     Route::get('{ip}/banner/{color1?}/{color2?}', 'ServerController@banner')->name('banner');
 });
 

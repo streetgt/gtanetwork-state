@@ -37,14 +37,14 @@ class PageController extends Controller
         $today = Stats::where('date', Carbon::today())->first();
 
         $players = [
-            'today_current'              => $players = ServerInfo::sum('currentplayers'),
-            'today_min'                  => $today->min,
-            'today_max'                  => $today->max,
-            'today_avg'                  => round(array_sum(json_decode($today->avg)) / 4),
-            'min'                        => Stats::orderBy('min', 'ASC')->pluck('min')->first(),
-            'max'                        => Stats::orderBy('max', 'DES')->pluck('max')->first(),
-            'total_servers'              => ServerInfo::count(),
-            'most_players_online_record' => Stats::all()->max('max'),
+            'today_current'                 => ServerInfo::sum('currentplayers'),
+            'today_min'                     => $today->min,
+            'today_max'                     => $today->max,
+            'today_avg'                     => round(array_sum(json_decode($today->avg)) / 4),
+            'min'                           => Stats::orderBy('min', 'ASC')->pluck('min')->first(),
+            'max'                           => Stats::orderBy('max', 'DES')->pluck('max')->first(),
+            'total_servers'                 => ServerInfo::count(),
+            'most_players_online_record'    => array(Stats::all()->max('max'),Stats::where('max', Stats::all()->max('max'))->pluck('created_at')->first()),
         ];
 
         $stats = Stats::orderBy('date', 'ASC')->get();
