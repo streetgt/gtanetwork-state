@@ -16,7 +16,7 @@
     <p class="lead">Find information about your GTA Network server here!</p>
     <form action="{{ route('servers.postSearch') }}" method="POST">
         <div class="form-group">
-            <input name="ip" id="ip" class="form-control" type="text" placeholder="127.0.0.1:4499">
+            <input name="ip" id="ip" class="form-control" type="text" placeholder="freeroam.gtanet.work:4499">
         </div>
         <button type="submit" class="btn btn-network">Submit</button>
         {{ csrf_field() }}
