@@ -18,7 +18,7 @@ class ApiServiceCaller
     /**
      * @var string
      */
-    private $uriServerList = 'https://master.gtanet.work/apiserverss';
+    private $uriServerList = 'https://master.gtanet.work/apiservers';
 
     /**
      * @var string
