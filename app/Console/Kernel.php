@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('gtanetwork:list 0')->hourly();
         $schedule->command('gtanetwork:list 2')->everyFiveMinutes();
+        $schedule->command('gtanetwork:list 3')->daily();
     }
 
     /**

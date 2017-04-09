@@ -20,7 +20,6 @@
             <ul class="dropdown-menu" role="menu">
                 <li class="{{ isActiveRoute('util.natives') }}"><a href="{{ route('util.natives') }}">Natives</a></li>
                 <li class="{{ areActiveRoutes(['util.map.get','util.map.post']) }}"><a href="{{ route('util.map.get') }}">Map Converter</a></li>
-                <li class="{{ areActiveRoutes(['util.forum.stats','util.forum.stats']) }}"><a href="{{ route('util.forum.stats') }}">Forum Stats</a></li>
             </ul>
         </li>
         <li role="presentation" class="{{ isActiveRoute('faq') }}"><a href="{{ route('faq') }}">FAQ</a></li>

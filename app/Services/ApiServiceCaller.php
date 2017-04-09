@@ -50,13 +50,9 @@ class ApiServiceCaller
 
         try {
             $response = $this->client->request('GET', $this->uriServerList);
-        }
-        catch (ClientException $e)
-        {
+        } catch (ClientException $e) {
             return [];
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             return [];
         }
 
@@ -72,9 +68,7 @@ class ApiServiceCaller
     {
         try {
             $response = $this->client->request('GET', $this->uriVerifiedServerList);
-        }
-        catch (ClientException $e)
-        {
+        } catch (ClientException $e) {
             return [];
         }
 
@@ -130,9 +124,8 @@ class ApiServiceCaller
             "UNK3"
         ];
 
-        foreach ($array_requests as $word)
-        {
-            $crawler = Goutte::request('GET', 'http://www.dev-c.com/nativedb/ns/'.$word);
+        foreach ($array_requests as $word) {
+            $crawler = Goutte::request('GET', 'http://www.dev-c.com/nativedb/ns/' . $word);
             $ul = $crawler->filter('a[class="fn_trigger"]')->each(function ($node) {
                 return $node->text();
             });
@@ -142,21 +135,19 @@ class ApiServiceCaller
                     $split = explode(' ', $native);
                     $type = $split[0];
                     $name = substr($native, strlen($split[0]) + 1, stripos($native, ')') - strlen($split[0]));
-                    if(substr($native, strlen($split[0])+1,1) == '*')
-                    {
-                        $type = $split[0] .'*';
-                        $name = substr($native, strlen($split[0])+2, stripos($native, ')') - strlen($split[0])-1);
+                    if (substr($native, strlen($split[0]) + 1, 1) == '*') {
+                        $type = $split[0] . '*';
+                        $name = substr($native, strlen($split[0]) + 2, stripos($native, ')') - strlen($split[0]) - 1);
                     }
 
                     $data = [
                         'category' => $word,
-                        'type' => $type,
-                        'name' => $name,
-                        'hash' => '0x' . substr($native, stripos($native, '//') + 3, strlen($native)),
+                        'type'     => $type,
+                        'name'     => $name,
+                        'hash'     => '0x' . substr($native, stripos($native, '//') + 3, strlen($native)),
                     ];
 
-                    if(DB::table('util_natives')->where('hash', $data['hash'])->first() == null)
-                    {
+                    if (DB::table('util_natives')->where('hash', $data['hash'])->first() == null) {
                         DB::table('util_natives')->insert($data);
                     }
                 }
@@ -165,24 +156,74 @@ class ApiServiceCaller
         //dd($natives);
     }
 
+    /**
+     * Fetch the natives directly from ScriptHookV
+     * Inserts into the table if it's a new native or update if exists.
+     */
+    public function getNativesFromFile()
+    {
+        try {
+            $savePath = resource_path() . '/files/natives.h';
+            $myFile = fopen($savePath, 'w+') or die('Problems');
+
+            $request = $this->client->request('GET', 'http://www.dev-c.com/nativedb/natives.h', [
+                'decode_content' => 'gzip',
+                'timeout'        => 10,
+                'sink'           => $myFile
+            ]);
+
+            $lines = file($savePath);
+
+            $natives = [];
+            $current_type = null;
+            foreach ($lines as $line_num => $line) {
+                $line = preg_replace('~[\r\n\t]+~', '', $line);
+                if (preg_match('/namespace/', $line) || preg_match('/static/', $line)) {
+                    if (preg_match('/namespace/', $line)) {
+                        $current_type = substr($line, 10, strlen($line));
+                    } else if (preg_match('/static/', $line)) {
+                        $line_array = explode(' ', $line);
+                        $size = strlen($line_array[0]) + strlen($line_array[1]) + 2;
+                        $data = [
+                            'category' => $current_type,
+                            'type'     => $line_array[1],
+                            'name'     => substr($line, $size, stripos($line, ')') + 1 - strlen($line)),
+                            'hash'     => substr($line, stripos($line, '//') + 3, strlen($line))
+                        ];
+
+                        $natives[] = $data;
+
+                        $item = DB::table('util_natives')->where('hash', $data['hash'])->first();
+                        if ($item == null) {
+                            DB::table('util_natives')->insert($data);
+                        } else {
+                            DB::table('util_natives')->where('id', $item->id)->update($data);
+                        }
+                    }
+                }
+            }
+            file_put_contents(resource_path() . '/files/natives.json', json_encode($natives));
+            exit();
+        } catch (ClientException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function getTotalCommits()
     {
         try {
-            $response = $this->client->request('GET', env('REPO_URL'),[
+            $response = $this->client->request('GET', env('REPO_URL'), [
                 'auth' => [env('REPO_USER'), env('REPO_PASSWORD')]
             ]);
 
-        }
-        catch (ClientException $e)
-        {
+        } catch (ClientException $e) {
             return 0;
         }
 
         $data = json_decode($response->getBody()->getContents());
 
         $commits = 0;
-        foreach ($data as $item)
-        {
+        foreach ($data as $item) {
             $commits += $item->total;
         }
 

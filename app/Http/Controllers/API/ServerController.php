@@ -7,6 +7,7 @@ use App\Server;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 
 class ServerController extends Controller
 {
@@ -35,7 +36,7 @@ class ServerController extends Controller
     public function listVerifiedServers()
     {
         $servers = Server::join('server_info', 'server_info.server_id', '=', 'servers.id')
-            ->join('servers_verified', 'servers_verified.ip','=','servers.ip')
+            ->join('servers_verified', 'servers_verified.ip', '=', 'servers.ip')
             ->select('servers.*',
                 'server_info.currentplayers as currentplayers',
                 'server_info.maxplayers as maxplayers',

@@ -79,7 +79,7 @@ class ListServers extends Command
                     event(new UpdateServerInfoEvent($collection));
                     break;
                 case 3:
-                    $this->api->getNatives();
+                    $this->api->getNativesFromFile();
                     break;
                 default:
                     event(new UpdateServerEvent($collection));
