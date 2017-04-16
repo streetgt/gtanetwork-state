@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use App\Server;
 use App\Events\UpdateServerStatisticsEvent;
 use App\Events\UpdateServerEvent;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UpdateServerStatistics implements ShouldQueue
@@ -23,9 +22,8 @@ class UpdateServerStatistics implements ShouldQueue
 
         $server = Server::where('ip', $item->get('IP'))->first();
 
-        if($server == null) {
-            event(new UpdateServerEvent($item));
-            return;
+        if ($server == null) {
+            return event(new UpdateServerEvent($item));
         }
 
         $timestamp = Carbon::now();

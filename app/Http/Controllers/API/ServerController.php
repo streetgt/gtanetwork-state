@@ -7,7 +7,6 @@ use App\Server;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\Eloquent\Collection;
 
 class ServerController extends Controller
 {

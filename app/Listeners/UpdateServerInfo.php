@@ -21,9 +21,8 @@ class UpdateServerInfo implements ShouldQueue
 
         $server = Server::where('ip', $item->get('IP'))->first();
 
-        if($server == null) {
-            event(new UpdateServerEvent($item));
-            return;
+        if ($server == null) {
+            return event(new UpdateServerEvent($item));
         }
 
         $data = [
@@ -31,7 +30,7 @@ class UpdateServerInfo implements ShouldQueue
             'maxplayers'     => $item->get('MaxPlayers'),
             'passworded'     => $item->get('Passworded')
         ];
-        
+
         if ($server->info()->count()) {
             $server->info()->update($data);
         } else {

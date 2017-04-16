@@ -59,17 +59,17 @@ class ServerController extends Controller
             $font->color('#' . $color1);
         });
 
-        $img->text($currentPlayers . '/' . $slots, 142, 16, function ($font) use ($font_url, $color1) {
+        $img->text($currentPlayers . '/' . $slots, 180, 16, function ($font) use ($font_url, $color1) {
             $font->file($font_url);
             $font->size(13);
             $font->color('#' . $color1);
         });
 
-        $img->text($server->gamemode, 185, 16, function ($font) use ($font_url, $color1) {
+        /*$img->text(str_limit($server->gamemode, 15), 230, 16, function ($font) use ($font_url, $color1) {
             $font->file($font_url);
             $font->size(13);
             $font->color('#' . $color1);
-        });
+        });*/
 
         //GRAPHIC
         $img->rectangle(268, 18, 324, 2, function ($draw) {
@@ -81,7 +81,7 @@ class ServerController extends Controller
         $per_hour = 2;
 
         $last = [269 + $per_hour, 17, 269 + $per_hour, 3];
-        foreach (array_reverse($daily_stats) as $key => $day) {
+        foreach ($daily_stats as $key => $day) {
 
             $last[0] += $per_hour;
             $last[2] += $per_hour;
@@ -90,7 +90,7 @@ class ServerController extends Controller
             if ($day == $slots) {
                 $number = 3;
             } else if ($day > 0) {
-                $number = $this->map($day, 0, $slots, 3, 17);
+                $number = $this->map($day, 0, $slots, 17, 3);
             }
             $img->line($last[0], $number, $last[2], 17, function ($draw) use ($color2) {
                 $draw->color('#' . $color2);
@@ -108,7 +108,6 @@ class ServerController extends Controller
         // Country Flag
         $flag_url = public_path() . '/images/flags/18x12/' . strtolower($server->country) . '.gif';
         $fag = Image::make($flag_url);
-//        $fag->resize(14, 14);
         $img->insert($fag, 'left', 10, 10);
 
         $response = Response::make($img->encode('png'));

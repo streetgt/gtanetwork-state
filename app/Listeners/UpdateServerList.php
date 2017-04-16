@@ -7,7 +7,6 @@ use App\Server;
 use App\Events\UpdateServerEvent;
 use App\Events\UpdateServerInfoEvent;
 use App\Events\UpdateServerStatisticsEvent;
-use Illuminate\Database\QueryException;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UpdateServerList implements ShouldQueue
@@ -62,8 +61,8 @@ class UpdateServerList implements ShouldQueue
             ]);
 
             event(new UpdateServerStatisticsEvent($element));
-
             event(new UpdateServerInfoEvent($element));
+
         } else {
             $server->update([
                 'ip'         => $element->get('IP'),
