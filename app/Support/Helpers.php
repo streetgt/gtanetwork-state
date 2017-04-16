@@ -26,7 +26,7 @@ function isActiveRoute($route, $output = "active")
 function isRoutePrefix($prefix, $output = "active")
 {
 
-    if (str_replace('/','',Request::route()->getPrefix()) == $prefix) return $output;
+    if (str_replace('/', '', Request::route()->getPrefix()) == $prefix) return $output;
 }
 
 /*
@@ -40,8 +40,7 @@ function isRoutePrefix($prefix, $output = "active")
 */
 function areActiveRoutes(Array $routes, $output = "active")
 {
-    foreach ($routes as $route)
-    {
+    foreach ($routes as $route) {
         if (Route::currentRouteName() == $route) return $output;
     }
 }
@@ -51,14 +50,12 @@ function formatVersion($number)
     $mod = ($number) % 200;
     $v1 = 0;
     $v2 = 0;
-    if($mod == 0)
-    {
+    if ($mod == 0) {
         $v1 = $number / 200;
-    }
-    else {
-        $v1 = $number < 200 ? 0 : substr(round($number / 200, 2, PHP_ROUND_HALF_DOWN),0,1);
+    } else {
+        $v1 = $number < 200 ? 0 : substr(round($number / 200, 2, PHP_ROUND_HALF_DOWN), 0, 1);
         $v2 = ($number) % 200;
     }
 
-    return $v1. '.' . $v2;
+    return $v1 . '.' . $v2;
 }
