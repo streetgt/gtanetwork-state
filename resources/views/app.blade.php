@@ -50,7 +50,7 @@
                 <div class="modal-body">
                     <img class="img-responsive center-block" src="{{ asset('images/tip-jar.png') }}" alt="Tip Jar"><br>
 
-                    <p>If you don't know or if you haven't read <a href="{{ route('faq') }}">FAQ</a> yet, currently I support the website from my own pocket, hosted on Amazon AWS services for $5/month.<p>
+                    <p>If you don't know or if you haven't read <a href="{{ route('faq') }}">the FAQ</a> yet, currently I support the website from my own pocket, hosted on Amazon AWS services for $5/month.<p>
                     If you really enjoy the platform and want to contribute helping me running the platform, you can donate <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tiagocardosoweb%40gmail%2ecom&lc=PT&item_name=GTA%20NETWORK%20%2d%20SERVER%20STATE&item_number=gtanetworkserverstate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">here</a>.</p>
                     <p>Greetings, <br><i>StreetGT</i></p>
                 </div>

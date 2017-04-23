@@ -35,7 +35,7 @@
                 <li>
                     <b>Looking to send me a donation?</b>
                     <ul>
-                        <li>Currently I support the website from my own pocket, hosted on DigitalOcean for $5/month, If you really enjoy the platform and want to contribute and help me run the platform, you can donate <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tiagocardosoweb%40gmail%2ecom&lc=PT&item_name=GTA%20NETWORK%20%2d%20SERVER%20STATE&item_number=gtanetworkserverstate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">here</a>.</li>
+                        <li>Currently I support the website from my own pocket, hosted on Amazon AWS services for $5/month, If you really enjoy the platform and want to contribute and help me run the platform, you can donate <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tiagocardosoweb%40gmail%2ecom&lc=PT&item_name=GTA%20NETWORK%20%2d%20SERVER%20STATE&item_number=gtanetworkserverstate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">here</a>.</li>
                         <li>
                             Donation Goals
                             <ul>
