@@ -20,6 +20,8 @@ elixir(function(mix) {
         '../../../node_modules/jquery/dist/jquery.js',
         '../../../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js',
         '../../../node_modules/datatables.net/js/jquery.dataTables.js',
+        '../../../node_modules/js-cookie/src/js.cookie.js',
+        '../../../resources/assets/js/app.js',
     ], 'public/js/app.js');
 });
 

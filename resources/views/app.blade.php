@@ -40,6 +40,26 @@
 
     @include('partials._footer')
 
+    <div id="donateModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Hello friend, welcome back!</h4>
+                </div>
+                <div class="modal-body">
+                    <img class="img-responsive center-block" src="{{ asset('images/tip-jar.png') }}" alt="Tip Jar"><br>
+
+                    <p>If you don't know or if you haven't read <a href="{{ route('faq') }}">FAQ</a> yet, currently I support the website from my own pocket, hosted on Amazon AWS services for $5/month.<p>
+                    If you really enjoy the platform and want to contribute helping me running the platform, you can donate <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tiagocardosoweb%40gmail%2ecom&lc=PT&item_name=GTA%20NETWORK%20%2d%20SERVER%20STATE&item_number=gtanetworkserverstate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">here</a>.</p>
+                    <p>Greetings, <br><i>StreetGT</i></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-color-network" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
 
 <!-- Javascript! -->
@@ -49,15 +69,5 @@
 <script src="{{ asset('js/app.min.js') }}"></script>
 @endif
 @yield('javascript')
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-45569214-4', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>
