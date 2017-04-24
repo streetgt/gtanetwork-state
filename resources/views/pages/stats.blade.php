@@ -21,95 +21,65 @@
                 <li><b>Min Players Today</b>: {{ $players['today_min'] }}</li>
             </ul>
             <div class="chart">
-                <canvas id="players_chart" width="400" height="200"></canvas>
+                <div id="chartContainer" style="height: 200px"></div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('javascript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
     <script>
-        var lineChartData = {
-            labels: [
-                @foreach($stats as $day)
-                        "{{ \Carbon\Carbon::parse($day->date)->format('D, M j, Y') }}",
-                @endforeach
-            ],
-            datasets: [{
-                fill: false,
-                label: "Min Players",
-                data: [
-                    @foreach($stats as $day)
-                            "{{ $day->min }}",
-                    @endforeach
-                ],
-                yAxisID: "y-axis-1",
-                borderColor: "#fecb00",
-            }, {
-                fill: false,
-                label: "Avg Players",
-                data: [
-                    @foreach($stats as $day)
-                            "{{ round(array_sum(json_decode($day->avg)) / 4) }}",
-                    @endforeach
-                ],
-                yAxisID: "y-axis-2",
-            }, {
-                fill: false,
-                label: "Max Players",
-                data: [
-                    @foreach($stats as $day)
-                            "{{ $day->max }}",
-                    @endforeach
-                ],
-                yAxisID: "y-axis-3",
-                borderColor: "#6f99bb",
-            }]
-        };
-
         window.onload = function () {
-            var ctx = document.getElementById("players_chart").getContext("2d");
-            window.myLine = Chart.Line(ctx, {
-                data: lineChartData,
-                options: {
-                    responsive: true,
-                    hoverMode: 'index',
-                    stacked: false,
+            var chart = new CanvasJS.Chart("chartContainer",
+            {
+                    zoomEnabled: true,
                     title: {
-                        display: true,
-                        text: 'Players Stats Online'
+                        text: "Player Stats Online"
                     },
-                    scales: {
-                        xAxes: [{
-                            display: true,
-                            gridLines: {
-                                offsetGridLines: false
-                            }
-                        }],
-                        yAxes: [{
-                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                            id: "y-axis-1",
-                            display: true,
-                            ticks: {
-                                max: {{ ($players['max']) }},
-                                min: {{ $players['min'] }},
-                            }
-                        }, {
-                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                            display: false,
-                            id: "y-axis-2",
-
-                        }, {
-                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                            display: false,
-                            id: "y-axis-3",
-
-                        }],
-                    }
-                }
-            });
-        };
+                    axisY: {
+                        includeZero: false
+                    },
+                    toolTip: {
+                        shared: "true"
+                    },
+                    data: [
+                        {
+                            xValueFormatString: "DDD, MMM D YYYY",
+                            type: "line",
+                            color: "#6f99bb",
+                            name: "Max players",
+                            dataPoints: [
+                                @foreach($stats as $day)
+                                    {x: new Date("{{ \Carbon\Carbon::parse($day->date)->toW3cString() }}"), y: {{ $day->max }} },
+                                @endforeach
+                            ]
+                        },
+                        {
+                            xValueFormatString: "DDD, MMM D YYYY",
+                            type: "line",
+                            color: "grey",
+                            name: "Avg players",
+                            dataPoints: [
+                                    @foreach($stats as $day)
+                                {x: new Date("{{ \Carbon\Carbon::parse($day->date)->toW3cString() }}"), y: {{ round(array_sum(json_decode($day->avg)) / 4) }} },
+                                @endforeach
+                            ]
+                        },
+                        {
+                            xValueFormatString: "DDD, MMM D YYYY",
+                            type: "line",
+                            color: "#fecb00",
+                            name: "Min players",
+                            dataPoints: [
+                                @foreach($stats as $day)
+                                    {x: new Date("{{ \Carbon\Carbon::parse($day->date)->toW3cString() }}"), y: {{ $day->min }} },
+                                @endforeach
+                            ]
+                        }]
+                });
+            chart.render();
+        }
     </script>
 
 @endsection

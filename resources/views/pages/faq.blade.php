@@ -39,7 +39,7 @@
                         <li>
                             Donation Goals
                             <ul>
-                                <li>Purchase a new domain.</li>
+                                <li>Keep the platform online.</li>
                             </ul>
                         </li>
                     </ul>
