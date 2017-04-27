@@ -81,6 +81,9 @@ class ListServers extends Command
                 case 3:
                     $this->api->getNativesFromFile();
                     break;
+                case 4:
+                    $this->api->restoreNativesFromBackup();
+                    break;
                 default:
                     event(new UpdateServerEvent($collection));
                     break;

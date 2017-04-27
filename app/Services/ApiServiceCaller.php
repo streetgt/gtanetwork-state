@@ -209,6 +209,39 @@ class ApiServiceCaller
         }
     }
 
+    public function restoreNativesFromBackup()
+    {
+        try {
+            DB::table('util_natives')->truncate();
+
+            $lines = file(resource_path() . '/files/natives_backup.h');
+
+            $current_type = null;
+            foreach ($lines as $line_num => $line) {
+                $line = preg_replace('~[\r\n\t]+~', '', $line);
+                if (preg_match('/namespace/', $line) || preg_match('/static/', $line)) {
+                    if (preg_match('/namespace/', $line)) {
+                        $current_type = substr($line, 10, strlen($line));
+                    } else if (preg_match('/static/', $line)) {
+                        $line_array = explode(' ', $line);
+                        $size = strlen($line_array[0]) + strlen($line_array[1]) + 2;
+                        $data = [
+                            'category' => $current_type,
+                            'type'     => $line_array[1],
+                            'name'     => substr($line, $size, stripos($line, ')') + 1 - strlen($line)),
+                            'hash'     => substr($line, stripos($line, '//') + 3, strlen($line))
+                        ];
+
+                        DB::table('util_natives')->insert($data);
+                    }
+                }
+            }
+            exit();
+        } catch (ClientException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function getTotalCommits()
     {
         try {
